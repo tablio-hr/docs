@@ -603,3 +603,11 @@ This ADR does not define:
 - MIKROeRAČUN automation
 - exact deadline duration, evidence-verify risk threshold, webhook skew, payload-size, or rate-limit numbers
 - POS screen layout
+
+## Amendment — 2026-08-15: Accounting posting and export owned by ADR 0025
+
+The original Decision that this ADR owns inbound receive and recipient fiscalization, and that accounting must not read the intermediary raw feed, remain in the original text.
+
+ADR 0025 now owns `AccountingExportBatch`, `AccountingExportDelivery`, and `AccountingOutboxMessage`. Export is built from canonical Tablio documents and stored snapshots. It must not read this ADR’s raw XML or inbox event. The reserved generic `ACKNOWLEDGED` export status is replaced by 0025 delivery statuses: `RECEIVED_BY_PROVIDER`, `IMPORTED`, and `BOOKED_CONFIRMED`.
+
+This amendment does not change receive assignment, fiscal evidence binding, or the three independent eInvoice statuses.

@@ -407,3 +407,11 @@ The original Decision that this ADR owns customer Payment, Intent, and Settlemen
 ADR 0023 owns `SupplierPaymentProposal`, `APPaymentReservation`, bank `UNKNOWN`, and AP allocation. Customer Payment stays this ADR.
 
 This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.
+
+## Amendment — 2026-08-15: Accounting export of captured Payment owned by ADR 0025
+
+The original Decision that Invoice, Payment, allocation, and Settlement are separate facts remain in the original text.
+
+ADR 0025 may export a `CAPTURED` customer Payment as an accounting source. Fees and Settlement still do not rewrite the invoice. Payment `UNKNOWN` is not exportable. `BOOKED_CONFIRMED` does not mark the customer paid.
+
+This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.

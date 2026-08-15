@@ -496,3 +496,11 @@ ADR 0020 inserts `OFFLINE_DRAIN` before `CLOSING`. Heartbeat is not proof the ou
 A lost-device exception seals the missing sequence range. Commands that later arrive from that range must not mutate the closed snapshot. A financial correction is a late adjustment on the current `OPEN` day.
 
 This amendment does not change StaffShift, drawer/wallet close, two-sided `CashTransfer`, or the persistent `SAFE` ledger.
+
+## Amendment — 2026-08-15: Day cash summary export owned by ADR 0025
+
+The original Decision that StaffShift, drawer session, `SAFE`, and `BusinessDay` stay separate remain in the original text.
+
+ADR 0025 may export a `CLOSED` `BusinessDay` cash summary as a control / reconciliation source. Day close is not GL period close. The summary must not re-post cash already posted from payments. Only unposted float, variance, or other referenced movements may create extra journal lines.
+
+This amendment does not change StaffShift, drawer/wallet close, two-sided `CashTransfer`, or the persistent `SAFE` ledger.
