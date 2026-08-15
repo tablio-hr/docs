@@ -613,3 +613,25 @@ accounting.security_manage
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-16: Analytics permissions owned by ADR 0026
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0026 owns reporting and historical snapshots. Location reports still need a covering `LocationAssignment`. `analytics.view_tenant` does not bypass location assignment. Every view, download, and export re-checks the current membership episode, permissions, and assignments. An old artifact or snapshot id does not retain access after revocation.
+
+ADR 0026 adds:
+
+```text
+analytics.view_location
+analytics.view_tenant
+analytics.view_financial
+analytics.view_staff
+analytics.export
+analytics.snapshot_publish
+analytics.snapshot_restate
+analytics.definition_manage
+analytics.reconciliation_resolve
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

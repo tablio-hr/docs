@@ -441,3 +441,11 @@ The original Decision that the server is the only canonical authority remain in 
 ADR 0025 owns accounting posting and export. An offline POS device must not prepare, download, or submit an accounting batch, and must not store racunai.hr credentials. Offline cash is not an export source until the server has accepted it.
 
 This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.
+
+## Amendment — 2026-08-16: Late offline accept is an analytics restatement source
+
+The original Decision that the server is the only canonical authority remain in the original text.
+
+ADR 0026 owns analytics projections and snapshots. A late server accept of an offline command is a restatement source. It must not mutate a `PUBLISHED` `AS_RECORDED` snapshot. A POS device must not publish or restate analytics snapshots.
+
+This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.

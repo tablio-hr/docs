@@ -625,3 +625,11 @@ This ADR does not define:
 - concrete retention days (ADR 0027)
 - exact webhook skew, payload-size cap, or rate-limit numbers
 - POS screen layout
+
+## Amendment — 2026-08-16: Channel facts readable by ADR 0026
+
+The original Decision that `ChannelOrder` is the canonical received-order record, and that an external payload is not the Ticket, remain in the original text.
+
+ADR 0026 may read canonical channel and delivery facts. Raw provider payload stays out of generic analytics datasets.
+
+This amendment does not change `ChannelOrder` first, the order fence, or provider-ack rules.

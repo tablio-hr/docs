@@ -535,3 +535,11 @@ This ADR does not define:
 - payroll
 - exact chart-of-accounts codes, rounding-account code, period length, or maker-checker amounts
 - POS screen layout
+
+## Amendment — 2026-08-16: Operational analytics owned by ADR 0026
+
+The original Decision that this ADR owns accounting export, and that a dashboard is not an accountant pack, remain in the original text.
+
+ADR 0026 now owns reporting, projections, and historical snapshots. Accountant packs stay this ADR. Export status may appear in analytics as status only. `BOOKED_CONFIRMED` or a technical ACK must not increment sales.
+
+This amendment does not change batch versus delivery, source claims, or layered provider ACK.
