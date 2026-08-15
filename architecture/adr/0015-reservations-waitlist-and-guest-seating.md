@@ -326,3 +326,15 @@ This ADR does not define:
 - table-repacking optimizer
 - staff identity and operator authorization
 - KDS, payments, tax, or fiscal XML
+
+## Amendment — 2026-08-15: Manual overbook permission owned by ADR 0017
+
+The original Decision that silent overbooking is forbidden and that manual overbooking is a separate permission and audited decision remains in the original text.
+
+ADR 0017 owns the permission catalog. Manual overbooking uses:
+
+```text
+reservation.overbook
+```
+
+Who may hold that permission, and how the operator session is proven, stay ADR 0017. This amendment does not change capacity modes, `ReservationTableAssignment`, or Seat party.
