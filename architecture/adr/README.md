@@ -9,6 +9,9 @@ Tablio writes platform ADRs **before** the first implementation when the decisio
 | ADR | Title | Status |
 |-----|-------|--------|
 | [0001](0001-platform-deployment-and-tenancy-boundary.md) | Platform deployment and tenancy boundary | Accepted (2026-08-15) |
+| [0002](0002-canonical-product-domain.md) | Canonical Product domain | Accepted (2026-08-15) |
+| [0003](0003-warehouse-and-inventory.md) | Warehouse and Inventory | Accepted (2026-08-15) |
+| [0004](0004-procurement-and-goods-receiving.md) | Procurement and Goods Receiving | Proposed |
 
 ## Template
 
