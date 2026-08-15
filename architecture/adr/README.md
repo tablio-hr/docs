@@ -15,6 +15,7 @@ Tablio writes platform ADRs **before** the first implementation when the decisio
 | [0005](0005-recipes-and-production.md) | Recipes and Production | Proposed |
 | [0006](0006-pos-sales-and-sale-actions.md) | POS Sales and Sale Actions | Proposed |
 | [0007](0007-pos-modifiers.md) | POS Modifiers | Proposed |
+| [0008](0008-bundles-and-promotions.md) | Bundles and Promotions | Proposed |
 
 ## Template
 

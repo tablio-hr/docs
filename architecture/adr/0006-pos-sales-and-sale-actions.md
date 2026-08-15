@@ -4,6 +4,8 @@
 
 Proposed
 
+Amended 2026-08-15: `BUNDLE` has no `product_id`.
+
 ## Date
 
 2026-08-15
@@ -264,3 +266,17 @@ This ADR does not define:
 - partial return or refund documents
 - price-list / happy-hour engines (price still freezes on add-line)
 - tax rate tables
+
+## Amendment — 2026-08-15: BUNDLE product_id
+
+The Decision 3 comment `product_id # optional for NON_STOCK` remains in the original text. ADR 0008 is the later decision that defines when a `BUNDLE` Sale Action may activate. This amendment supplements the `product_id` rule only:
+
+```text
+DIRECT, PORTION and RECIPE require product_id.
+BUNDLE does not have product_id; it references bundle_version_id.
+NON_STOCK may have no product_id.
+```
+
+A bundle is not a `Product`. The original reservation that `BUNDLE` cannot activate in this ADR is unchanged here. Activation conditions live in ADR 0008.
+
+This amendment does not change freeze-on-add-line, tax rate at post, ticket lifecycle, or any other 0006 lock.
