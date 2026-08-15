@@ -312,3 +312,17 @@ This ADR does not define:
 - staff identity and the role catalog
 - tax formula or fiscal XML
 - POS screen layout
+
+## Amendment — 2026-08-15: Approval consume authorized by ADR 0017
+
+The original Decision 6 consume transaction, cumulative deviation, and one-consume rule remain in the original text.
+
+ADR 0017 owns who may request or approve. Consume also runs the 0017 checks: active identity, current `ACTIVE` episode, covering location assignment, matching `OperatorSession` episode and `authorization_generation`, and the required catalog permission. ApprovalRule role names are not sufficient without that permission.
+
+Maker-checker is `requester_staff_membership_id != approver_staff_membership_id`. `UNIQUE (tenant_id, user_identity_id)` makes a second membership for the same person impossible. Two PINs on one membership do not count as two people.
+
+Unused approvals expire when the staff loses the right (`SUSPENDED`, `ENDED`, lock, or lost approve permission). A later role change does not rewrite a consume that was valid then.
+
+`emergency.override` is the ADR 0017 right. It does not lift a required maker-checker.
+
+This amendment does not change PriceList selection, Reprice, stacking order, or atomic consume.
