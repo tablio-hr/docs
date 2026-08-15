@@ -537,3 +537,31 @@ delivery.override
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-15: Supplier and AP permissions owned by ADR 0023
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0023 owns `SupplierInvoice`, `APOpenItem`, and supplier payment. IBAN change, IBAN verify, and payment release stay separated. Supplier merge with open items is maker-checker.
+
+ADR 0023 adds:
+
+```text
+supplier.view
+supplier.manage
+supplier.bank_account_manage
+supplier.bank_account_verify
+ap.invoice_create
+ap.invoice_validate
+ap.invoice_match
+ap.invoice_approve
+ap.invoice_post
+ap.invoice_dispute
+ap.duplicate_override
+ap.payment_prepare
+ap.payment_approve
+ap.payment_submit
+ap.payment_reconcile
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

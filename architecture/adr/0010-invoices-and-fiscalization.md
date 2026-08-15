@@ -403,3 +403,11 @@ ADR 0021 owns `CustomerProfile`. The live profile is **not** the invoice recipie
 `LoyaltyEarnSource` binds to `invoice_id` or the fiscal document, not to a mutable Ticket. Tax and fiscal treatment of a loyalty benefit stay this ADR and ADR 0009.
 
 This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.
+
+## Amendment — 2026-08-15: Incoming supplier document owned by ADR 0023
+
+The original Decision that this ADR governs outgoing sales Invoices only remain in the original text.
+
+ADR 0023 owns the canonical `SupplierInvoice` and AP subledger. Incoming eInvoice transport and recipient fiscalization stay ADR 0024. `legal_entity_id` on the AP invoice is ADR 0023.
+
+This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.

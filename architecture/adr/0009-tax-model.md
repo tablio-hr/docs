@@ -367,3 +367,11 @@ This ADR does not define:
 - partial return or refund documents
 - different-class modifier fiscal sublines
 - explicit bundle tax weights beyond ADR 0008 GROSS allocation
+
+## Amendment — 2026-08-15: Supplier input VAT recorded by ADR 0023
+
+The original Decision that this ADR owns the tax model, and that purchase / input VAT was out of implementation scope here, remain in the original text.
+
+ADR 0023 records input VAT evidence, deductible and non-deductible parts, reverse charge, exemption, jurisdiction, and rule version on the supplier invoice. This ADR still owns the tax model and recoverability math.
+
+This amendment does not change sales-tax calculation, rounding ownership, or fiscal XML.
