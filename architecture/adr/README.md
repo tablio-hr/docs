@@ -26,6 +26,7 @@ Tablio writes platform ADRs **before** the first implementation when the decisio
 | [0016](0016-price-lists-discounts-comps-and-approval-rules.md) | Price Lists, Discounts, Comps and Approval Rules | Proposed |
 | [0017](0017-staff-identity-roles-and-operator-authorization.md) | Staff Identity, Roles and Operator Authorization | Proposed |
 | [0018](0018-shifts-cash-drawers-and-daily-closing.md) | Shifts, Cash Drawers and Daily Closing | Proposed |
+| [0019](0019-pos-devices-registration-and-configuration.md) | POS Devices, Registration and Configuration | Proposed |
 
 ## ADR Roadmap
 
@@ -47,7 +48,6 @@ Feature UX and ordinary implementation details remain outside ADRs.
 
 | ADR | Planned title | Status |
 |-----|---------------|--------|
-| 0019 | POS Devices, Registration and Configuration | Planned |
 | 0020 | Offline POS Operation and Synchronization | Planned |
 | 0021 | Customer Profiles, Consent and Loyalty | Planned |
 | 0022 | Ordering Channels, Delivery and External Platforms | Planned |
