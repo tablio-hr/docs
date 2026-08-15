@@ -4,6 +4,8 @@
 
 Proposed
 
+Amended 2026-08-15: ticket-level discount, manual discount, override, and Comp owned by ADR 0016.
+
 ## Date
 
 2026-08-15
@@ -397,3 +399,17 @@ This ADR does not define:
 - modifiers on expanded component lines
 - production substitutions (ADR 0005)
 - loyalty or membership
+
+## Amendment — 2026-08-15: Manual discount, Comp, and ticket-level discount owned by ADR 0016
+
+The original Decision that v1 promotions are automatic, line-level, and do not stack with each other remains in the original text.
+
+ADR 0016 owns ticket-level discount, manual discount, price override, Comp, and approval.
+
+```text
+0008 automatic promotions still do not stack with each other.
+0016 applies after those automatic effects:
+manual line discount, ticket-level allocation, then Comp.
+```
+
+This amendment does not change bundle structure, `BUY_X_GET_Y`, tax allocation, or “stock from delivered quantity”.

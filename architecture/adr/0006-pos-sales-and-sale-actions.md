@@ -6,6 +6,7 @@ Proposed
 
 Amended 2026-08-15: `BUNDLE` has no `product_id`.
 Amended 2026-08-15: operational pre-post states owned by ADR 0012.
+Amended 2026-08-15: add-line unit price resolved by ADR 0016.
 
 ## Date
 
@@ -302,3 +303,22 @@ Freeze-on-add-line remains a per-line-version catalog and commercial snapshot. I
 A required non-sale stock disposition for prepared or served quantity excluded from commercial posting is owned by ADR 0012. That movement is not a `SALE`. `CANCELLED` in the original 0006 sense still never produces a stock movement: it applies only to a Ticket that never executed.
 
 This amendment does not change Sale Action types, freeze-on-add-line commercial fields, tax rate at post, one location/storage/currency, or “only `POSTED` creates `SALE`”.
+
+## Amendment — 2026-08-15: Add-line unit price resolved by ADR 0016
+
+The original Decision 4 freeze-on-add-line and Decision 7 “Price is not `Product.price`” remain in the original text.
+
+ADR 0016 owns versioned PriceLists and the resolved add-line unit price for that `sale_action_id`.
+
+```text
+Add-line unit price is the published PriceList entry
+for the resolved sale_action_id.
+
+A missing list price is fail-closed, not 0.00.
+
+Refreshing open unsent lines requires an explicit Reprice ticket.
+```
+
+A promotional or complimentary zero remains a stocked POS line when the Sale Action has a stock effect. That zero must come from a published list, an ADR 0008 promotion, or an ADR 0016 Comp — not from a missing price.
+
+This amendment does not change Sale Action types, tax rate at post, one location/storage/currency, or “only `POSTED` creates `SALE`”.
