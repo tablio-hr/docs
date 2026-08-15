@@ -592,3 +592,15 @@ This ADR does not define:
 - the legal-entity master beyond the invoice, PO, and GR binding
 - exact tolerance amounts, late-payment day counts, or “large non-PO” thresholds
 - POS screen layout
+
+## Amendment — 2026-08-15: Incoming eInvoice exchange and recipient fiscalization owned by ADR 0024
+
+The original Decision that this ADR owns the AP lifecycle, and that a received document is not an obligation, remain in the original text.
+
+ADR 0024 now owns `EInvoiceExchangeRecord`, MANUAL and API receive, the three independent exchange / fiscal / handoff statuses, deadline, and AP handoff. This ADR still owns matching, approval, `POSTED`, `APOpenItem`, and supplier payment.
+
+Fiscal `ACKNOWLEDGED` is not `POSTED` and does not create `APOpenItem`. Handoff may create or link a `SupplierInvoice` while recipient fiscalization is still `PENDING`. The versioned `recipient_fiscalization_gate` may block posting or payment in this ADR.
+
+`EInvoiceBusinessFingerprint` is an extra receive-side duplicate protection. The AP duplicate key in this ADR remains. After `POSTED`, a corrected eInvoice revision does not overwrite the posted invoice; use a credit or debit note or the compensation workflow here. ADR 0023 owns the business reject or dispute decision; ADR 0024 sends any required eReporting transport.
+
+This amendment does not change one `APOpenItem` per posted document, non-negative amounts, or the match reservation rules.

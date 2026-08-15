@@ -565,3 +565,29 @@ ap.payment_reconcile
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-15: Incoming eInvoice permissions owned by ADR 0024
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0024 owns inbound eInvoice receive and recipient fiscalization. `einvoice.view` does not grant original XML. Evidence upload and verify stay separated. `einvoice.recovery_import` is distinct from `einvoice.import_manual`.
+
+ADR 0024 adds:
+
+```text
+einvoice.view
+einvoice.artifact_view
+einvoice.import_manual
+einvoice.recovery_import
+einvoice.validate
+einvoice.map_supplier
+einvoice.fiscalize
+einvoice.evidence_verify
+einvoice.resolve
+einvoice.connection_manage
+einvoice.security_manage
+einvoice.reporting_submit
+einvoice.reporting_resolve
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

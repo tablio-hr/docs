@@ -31,6 +31,7 @@ Tablio writes platform ADRs **before** the first implementation when the decisio
 | [0021](0021-customer-profiles-consent-and-loyalty.md) | Customer Profiles, Consent and Loyalty | Proposed |
 | [0022](0022-ordering-channels-delivery-and-external-platforms.md) | Ordering Channels, Delivery and External Platforms | Proposed |
 | [0023](0023-supplier-invoices-and-accounts-payable.md) | Supplier Invoices and Accounts Payable | Proposed |
+| [0024](0024-incoming-einvoices-and-recipient-fiscalization.md) | Incoming eInvoices and Recipient Fiscalization | Proposed |
 
 ## ADR Roadmap
 
@@ -52,7 +53,6 @@ Feature UX and ordinary implementation details remain outside ADRs.
 
 | ADR | Planned title | Status |
 |-----|---------------|--------|
-| 0024 | Incoming eInvoices and Recipient Fiscalization | Planned |
 | 0025 | Accounting Posting and Export | Planned |
 | 0026 | Reporting, Analytics and Historical Snapshots | Planned |
 | 0027 | Audit Trail, Data Retention and Privacy | Planned |

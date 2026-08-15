@@ -425,3 +425,11 @@ The original Decision that the server is the only canonical authority remain in 
 ADR 0022 owns provider inbox and outbox. Webhooks land only on the central server. An offline device must not ingest a provider webhook as canonical, must not accept a `ChannelOrder` the server already accepted, and must not emit a provider acknowledgement. After sync it receives the accepted Ticket or `ChannelOrder` snapshot. Local print is not platform acknowledgement.
 
 This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.
+
+## Amendment — 2026-08-15: Incoming eInvoice and recipient fiscalization are server-only
+
+The original Decision that the server is the only canonical authority remain in the original text.
+
+ADR 0024 owns inbound eInvoice receive and recipient fiscalization. An offline POS device must not receive a canonical eInvoice, send recipient fiscalization, confirm manual evidence, or store intermediary credentials. After sync it may show an allowed AP status only.
+
+This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.
