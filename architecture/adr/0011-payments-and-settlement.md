@@ -399,3 +399,11 @@ The original Decision that Settlement records when an external provider transfer
 ADR 0022 owns `ChannelOrder` collection mode. `PLATFORM_COLLECTED` is a claim, not bank settlement. A provider refund or cancel is also a claim. A replay binds the same internal operation and must not create a second Refund. The same order must not be marked paid by both a platform claim and a local capture.
 
 This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.
+
+## Amendment — 2026-08-15: Supplier payment owned by ADR 0023
+
+The original Decision that this ADR owns customer Payment, Intent, and Settlement, and that incoming AP payments waited for a later ADR, remain in the original text.
+
+ADR 0023 owns `SupplierPaymentProposal`, `APPaymentReservation`, bank `UNKNOWN`, and AP allocation. Customer Payment stays this ADR.
+
+This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.

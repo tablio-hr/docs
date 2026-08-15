@@ -500,3 +500,13 @@ This ADR does not define:
 - per-line Goods Receipt storage
 - over-receipt tolerance tables
 - linking a replacement Goods Receipt to a return
+
+## Amendment — 2026-08-15: AP invoice lifecycle owned by ADR 0023
+
+The original Decision that Purchase Order, Goods Receipt, and Supplier Invoice stay three documents, and that an invoice never moves stock, remain in the original text.
+
+ADR 0023 owns the AP lifecycle, bank accounts, `InvoiceMatchAllocation` (`PROVISIONAL` / `COMMITTED` / `RELEASED`), legal-entity alignment of PO, GR, and invoice, approval snapshot, and `POSTED` creating exactly one `APOpenItem`. Uniqueness includes `document_type` and the merged supplier cluster.
+
+A posted AP invoice is not `VOIDED`. Correction is a credit note, debit note, or compensating document. The invoice must not increase received quantity or create a Goods Receipt.
+
+This amendment does not change Goods Receipt posting, ReturnToSupplier, or ADR 0003 stock movements.
