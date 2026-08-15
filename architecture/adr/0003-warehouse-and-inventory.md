@@ -5,6 +5,7 @@
 Accepted (2026-08-15)
 
 Amended 2026-08-15: Canonical fractional-piece ledger precision.
+Amended 2026-08-15: Receipt/return reversal dependency.
 
 ## Date
 
@@ -216,6 +217,35 @@ reversal_of_movement_id
 - One general reversal mechanism covers receipt, transfer, waste, internal use, adjustment, sale, and stocktake.
 
 `location_id` on the reversal is the snapshot of the same storage.
+
+### Reversal dependency between receipts and returns
+
+Inventory movements created by a posted goods receipt MUST NOT be
+reversed while a posted, non-reversed supplier return references the
+receipt or any of its lines.
+
+Linked supplier returns form an explicit reversal dependency:
+
+1. Each linked supplier return MUST first be reversed.
+2. The return reversal posts compensating inventory movements and
+   preserves the original return, its references, and delivery proof.
+3. Only after no active posted return remains may the goods receipt
+   reversal post its compensating movements.
+
+All dependency checks and compensating inventory postings MUST be
+atomic and concurrency-safe. A concurrent return posting or reversal
+MUST NOT produce a state containing both an active linked return and
+a reversed goods receipt.
+
+Posting a supplier return MUST lock the referenced goods receipt and
+its referenced receipt lines before validating and posting the return.
+
+Goods receipt reversal and supplier return posting MUST acquire locks
+in the same deterministic order: goods receipt, receipt lines, and
+then supplier return lines.
+
+After the goods receipt lock is acquired, supplier return posting MUST
+fail if the receipt is already reversed or is being reversed.
 
 ### 9. Hard lock: document lifecycle and atomic post
 
@@ -520,3 +550,9 @@ Rules:
 The unavoidable consequence of fixed precision is a very small theoretical remainder after many separate portions. Seventy separately posted `3/70` pours need not sum to exactly `3 piece`. The canonical ledger value is authoritative. Physical remainder is resolved by stocktake and an `ADJUSTMENT` (or `STOCKTAKE_VARIANCE`) movement — never by a hidden correction of posted quantities.
 
 `divisible=false` still rejects any fractional `piece`. A whole closed bottle of a divisible product remains exactly `1 piece` on the ledger.
+
+## Amendment — 2026-08-15: Receipt/return reversal dependency
+
+See Decision, **Reversal dependency between receipts and returns**
+(after §8). This amendment does not change the general linked-reversal
+writer rules.

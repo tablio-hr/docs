@@ -213,6 +213,36 @@ resolution                       # OPEN | FULFILLED | CLOSED_SHORT
 - A later Goods Receipt against a `CLOSED_SHORT` line is rejected unless the close is reversed (reopen is a hook).
 - Unordered extras on a PO-backed Goods Receipt are allowed only when marked `unordered=true`. They do not fulfill any PO line.
 
+### Goods receipt reversal with linked returns
+
+A posted goods receipt MUST NOT be reversed while any posted,
+non-reversed supplier return line references that receipt or one of
+its receipt lines.
+
+The user MUST reverse all such supplier returns before reversing the
+goods receipt. Reversing a supplier return preserves the original
+return document and delivery proof and posts compensating inventory
+movements; it MUST NOT delete or rewrite the original return.
+
+The system MUST NOT automatically cascade a goods receipt reversal
+into linked supplier return reversals.
+
+The validation and posting of the goods receipt reversal MUST execute
+in the same database transaction. The receipt, its lines, and linked
+posted return lines MUST be locked before eligibility is evaluated.
+If an active linked return is found, posting MUST fail without creating
+inventory movements or changing purchase-order fulfillment quantities.
+
+Posting a supplier return MUST lock the referenced goods receipt and
+its referenced receipt lines before validating and posting the return.
+
+Goods receipt reversal and supplier return posting MUST acquire locks
+in the same deterministic order: goods receipt, receipt lines, and
+then supplier return lines.
+
+After the goods receipt lock is acquired, supplier return posting MUST
+fail if the receipt is already reversed or is being reversed.
+
 ### 6. Over and under
 
 Physical truth wins for stock. Commercial variance is not a reason to refuse the ledger.
@@ -268,6 +298,8 @@ DRAFT → POSTED → REVERSED
 ```
 
 - v1: every return line **must** reference a Goods Receipt line. Returnable quantity is GR line quantity − GR reversals − already returned against that line.
+- A posted, non-reversed return line blocks reversal of the referenced Goods Receipt. Reverse those returns first. Return reversal posts compensating movements; it does not delete or rewrite the original return or delivery proof.
+- Posting a return locks the referenced Goods Receipt and its referenced receipt lines first, in the same order as Goods Receipt reversal, and fails if that receipt is already reversed or is being reversed.
 - Physical stock is posted from the **currently chosen** return storage. It need not be the original receipt storage (goods may have been transferred).
 - Product, tenant, and base unit must match the original Goods Receipt line.
 - `on_hand` at the return storage may go negative under ADR 0003. Do not invent lot or serial tracking here.
@@ -367,6 +399,9 @@ Posted documents snapshot supplier, product, packaging, unit, tax classification
 - Requiring return storage to equal the original Goods Receipt storage.
 - A credit note that silently deducts stock.
 - POS or warehouse clients converting packaging themselves.
+- Reversing a Goods Receipt while a posted, non-reversed supplier return still references it.
+- Automatically cascading a Goods Receipt reversal into linked supplier return reversals.
+- Locking only existing return lines when reversing a Goods Receipt (a concurrent new return can still post).
 
 ## Consequences
 
@@ -394,7 +429,7 @@ Posted documents snapshot supplier, product, packaging, unit, tax classification
 
 1. Only posted physical documents move stock: Goods Receipt → `RECEIPT`, ReturnToSupplier → `RETURN_TO_SUPPLIER`. Purchase Order, Supplier Invoice, and Supplier Credit Note never move stock.
 2. All stock effects go through the ADR 0003 writer. Same transaction, idempotency with payload, unique posting generation, linked reversal, no partial post.
-3. Return does not erase prior receipt and does not automatically reopen a Purchase Order. Reversal of a wrong Goods Receipt is the only way to undo a receipt fact. Replacement is a new Goods Receipt.
+3. Return does not erase prior receipt and does not automatically reopen a Purchase Order. Reversal of a wrong Goods Receipt is the only way to undo a receipt fact, and only after every posted non-reversed return that references that receipt has itself been reversed. Replacement is a new Goods Receipt.
 4. v1: one `location_id + storage_id` on the Goods Receipt header. All lines enter that storage.
 5. Invoice matching uses quantity and amount allocations. A Goods Receipt quantity must not be fully invoiced twice. Ambiguous auto-match stays `AMBIGUOUS`. Changing a match never rewrites the receipt or movements.
 6. Invoice lines may omit `product_id`. They never move stock and must not invent a Product. A stock Goods Receipt line must have a Product.
@@ -408,6 +443,20 @@ Posted documents snapshot supplier, product, packaging, unit, tax classification
 14. Supplier and all procurement documents are tenant-scoped. The same OIB across tenants is not the same supplier.
 15. `is_stock_tracked=false` lines document but do not move stock.
 16. Posted documents snapshot commercial identity. A later rename does not rewrite history.
+17. A Goods Receipt must not be reversed while any posted, non-reversed supplier return line references it or one of its lines. Goods receipt reversal and supplier return posting lock in the same order: goods receipt, receipt lines, then supplier return lines. Validation and posting share one transaction. There is no automatic cascade.
+
+## Future implementation acceptance
+
+Later `apps.procurement` MUST cover at least:
+
+- GR + active posted return → GR reversal rejected
+- reversed return → GR reversal allowed
+- draft/cancelled return → does not block GR reversal
+- return linked to only one line → blocks reversal of the whole GR
+- concurrent return post + GR reversal → only one operation may succeed
+- rejected reversal creates no movements and does not change PO fulfillment
+- return reversal preserves the original document, references, and delivery proof
+- no automatic cascade reversal
 
 ## Follow-up ADRs
 
