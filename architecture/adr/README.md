@@ -21,9 +21,54 @@ Tablio writes platform ADRs **before** the first implementation when the decisio
 | [0011](0011-payments-and-settlement.md) | Payments and Settlement | Proposed |
 | [0012](0012-pos-tickets-ordering-and-service-workflow.md) | POS Tickets, Ordering and Service Workflow | Proposed |
 
+## ADR Roadmap
+
+Reserved numbers for planned architectural decisions. A roadmap entry is not
+an accepted decision and does not authorize implementation.
+
+`Planned` is not `Proposed`. A reserved number is not a decision. There is no
+file link until the ADR file exists. When the document is created, its row
+moves from Roadmap to Index.
+
+Roadmap titles and ordering may be refined before an ADR file exists. Any
+roadmap change is made through a normal docs PR. Once an ADR file exists, its
+number and identity are permanent. A removed planned topic leaves no tombstone
+because it was never an ADR.
+
+A roadmap topic becomes an ADR only when it requires a long-lived,
+cross-component boundary or an irreversible architectural decision.
+Feature UX and ordinary implementation details remain outside ADRs.
+
+| ADR | Planned title | Status |
+|-----|---------------|--------|
+| 0013 | Tables, Service Areas and Seating | Planned |
+| 0014 | Kitchen, Bar Production Routing and KDS | Planned |
+| 0015 | Reservations, Waitlist and Guest Seating | Planned |
+| 0016 | Price Lists, Discounts, Comps and Approval Rules | Planned |
+| 0017 | Staff Identity, Roles and Operator Authorization | Planned |
+| 0018 | Shifts, Cash Drawers and Daily Closing | Planned |
+| 0019 | POS Devices, Registration and Configuration | Planned |
+| 0020 | Offline POS Operation and Synchronization | Planned |
+| 0021 | Customer Profiles, Consent and Loyalty | Planned |
+| 0022 | Ordering Channels, Delivery and External Platforms | Planned |
+| 0023 | Supplier Invoices and Accounts Payable | Planned |
+| 0024 | Incoming eInvoices and Recipient Fiscalization | Planned |
+| 0025 | Accounting Posting and Export | Planned |
+| 0026 | Reporting, Analytics and Historical Snapshots | Planned |
+| 0027 | Audit Trail, Data Retention and Privacy | Planned |
+| 0028 | Public API, Webhooks and Integration Idempotency | Planned |
+| 0029 | Menu Publishing, Availability and Dayparts | Planned |
+| 0030 | Gift Cards, Vouchers and Stored Value | Planned |
+| 0031 | Deposits, Prepayments and No-show Charges | Planned |
+| 0032 | Tenant Plans, Entitlements and SaaS Billing | Planned |
+
 ## Template
 
-New ADRs use the next free number and this shape:
+New ADRs take the lowest available reserved number from the ADR Roadmap.
+When the document is created, its row moves from Roadmap to Index.
+`Planned` appears only in the Roadmap table, never as an Index status.
+
+New ADRs use this shape:
 
 ```markdown
 # ADR 00XX: Title
