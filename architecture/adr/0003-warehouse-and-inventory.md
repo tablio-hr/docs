@@ -4,6 +4,8 @@
 
 Accepted (2026-08-15)
 
+Amended 2026-08-15: Canonical fractional-piece ledger precision.
+
 ## Date
 
 2026-08-15
@@ -463,7 +465,7 @@ The next ADR should define **Procurement and Goods Receiving**, posting `RECEIPT
 ## See also
 
 - [ADR 0001: Platform deployment and tenancy boundary](0001-platform-deployment-and-tenancy-boundary.md)
-- [ADR 0002: Canonical Product domain](0002-canonical-product-domain.md)
+- [ADR 0002: Canonical Product domain](0002-canonical-product-domain.md) (including the 2026-08-15 divisible COUNT amendment)
 
 ## Out of scope
 
@@ -488,3 +490,33 @@ This ADR does not define:
 - period-close procedure
 - full inventura UX
 - the controlled base-unit migration procedure (ADR 0002)
+
+## Amendment — 2026-08-15: Canonical fractional-piece ledger precision
+
+This amendment implements the inventory-domain rule required by the ADR 0002 amendment on divisible COUNT products.
+
+The Decision 3 sentence “`piece` with precision 0 rejects `0.5`” remains in the original text. It still applies to products that are not marked divisible. It is **superseded only** for a divisible COUNT product when the posted quantity is a canonical ledger conversion of an exact ratio, or an allowed estimated fractional `piece`.
+
+```text
+Canonical fractional-piece scale: 12 decimal places
+Rounding mode: ROUND_HALF_EVEN
+```
+
+A portion is an exact ratio. The ratio must not be stored or calculated using binary floating-point.
+
+```text
+30 / 700 = 3 / 70
+canonical ledger quantity = 0.042857142857 piece
+```
+
+Rules:
+
+- A user-entered quantity with more decimals than the product allows is still **rejected**. There is no silent rounding of operator input.
+- Rounding is allowed **only** when converting an exact ratio into `quantity_in_base_unit`.
+- A conversion that would round to `0` is rejected. ADR 0003 still forbids zero movements.
+- `on_hand` sums already-canonical ledger quantities. It does not round again.
+- A reversal copies the **stored** quantity with the opposite sign. It must not recompute `30/700`. A later change to declared content or to this rounding rule must not make a reversal differ from the original movement.
+
+The unavoidable consequence of fixed precision is a very small theoretical remainder after many separate portions. Seventy separately posted `3/70` pours need not sum to exactly `3 piece`. The canonical ledger value is authoritative. Physical remainder is resolved by stocktake and an `ADJUSTMENT` (or `STOCKTAKE_VARIANCE`) movement — never by a hidden correction of posted quantities.
+
+`divisible=false` still rejects any fractional `piece`. A whole closed bottle of a divisible product remains exactly `1 piece` on the ledger.

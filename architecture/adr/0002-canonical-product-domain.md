@@ -4,6 +4,8 @@
 
 Accepted (2026-08-15)
 
+Amended 2026-08-15: Divisible COUNT products.
+
 ## Date
 
 2026-08-15
@@ -458,3 +460,47 @@ This ADR does not define:
 - product images or search aliases
 - the exact `short_name` shortening algorithm
 - the controlled base-unit migration procedure
+
+## Amendment — 2026-08-15: Divisible COUNT products
+
+This amendment changes the rule that every product whose base unit is `piece` must have integer quantities only.
+
+The Decision 7 sentence “piece uses 0 decimal places” remains in the original text. It still applies to ordinary COUNT products. It is **superseded only** for a product explicitly marked divisible.
+
+A COUNT product is indivisible by default. Exceptionally, a product that represents a physical package whose contents are sold or recorded in portions may be marked divisible.
+
+A divisible COUNT product still uses `piece` as its warehouse base unit, but its on-hand quantity may include a fractional part of one piece.
+
+`divisible=false` must not accept a fractional `piece`. `divisible=true` does not mean a whole bottle is sold as `700 ml`. A whole closed bottle remains exactly `1 piece`.
+
+Example:
+
+- product: Vodka 0.7 L
+- base unit: `piece`
+- divisible: `true`
+- declared content: `700 ml`
+
+A whole closed bottle is recorded as `1 piece`.
+A `30 ml` serving is the share `30/700 piece`.
+A whole-bottle sale is exactly `1 piece`.
+
+A portion is defined as an exact ratio between the portion quantity and the declared package content.
+
+```text
+30 ml / 700 ml = 3/70 piece
+```
+
+The ratio must not be stored or calculated using binary floating-point. Conversion to ledger quantity follows one canonical fixed-precision and rounding rule defined by the inventory domain.
+
+Declared content quantity and unit are required when a divisible COUNT product is intended for measured portion sale. An estimated `0.5 piece` may exist without declared content.
+
+When declared content is present:
+
+- `declared_content_quantity` must be `> 0`
+- `declared_content_unit` belongs to one dimension (for example `VOLUME`)
+- portion quantity and declared content must share a compatible dimension
+- `ml ↔ g` is forbidden without an explicit later density model
+- changing declared content must not rewrite existing Sale Actions or historical postings
+- a later historical sale line must freeze the ratio that was used
+
+`divisible` and declared content are Product-level hooks. Exact column names are an implementation concern. This amendment does not introduce a second vodka Product, lot tracking, or density conversion.
