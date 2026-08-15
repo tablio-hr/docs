@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted (2026-08-15)
+Accepted (2026-08-15) — amended 2026-08-15 (stage tunnel contract, AAAA, token split)
 
 ## Date
 
@@ -33,11 +33,19 @@ The same application image runs in two isolated runtimes.
 | Branch | Environment | Hosts | Ingress |
 |--------|-------------|-------|---------|
 | `develop` | WSL stage | `admin-stage.tablio.hr`, `api-stage.tablio.hr` | Cloudflare Tunnel → local Traefik |
-| `main` | HEL1 production | `admin.tablio.hr`, `api.tablio.hr` | Cloudflare DNS (proxied A/AAAA) → public HEL1 IP → Traefik |
+| `main` | HEL1 production | `admin.tablio.hr`, `api.tablio.hr` | Cloudflare DNS (proxied A, and AAAA only if HEL1 IPv6 is routed to Traefik) → public HEL1 IP → Traefik |
 
-On HEL1, Traefik does **not** create DNS records. It routes and terminates TLS. DNS create/update is a Cloudflare API concern of the production release path.
+On HEL1, Traefik does **not** create DNS records. It routes and terminates TLS. DNS create/update is a Cloudflare API concern of the production release path. A-only production records are valid until IPv6 is actually routed to Traefik.
 
-`develop` never deploys to HEL1. `main` never changes the stage tunnel or `*-stage` DNS.
+Stage ingress is a **remotely-managed** Cloudflare Tunnel. The standing contract:
+
+- Public hostnames `admin-stage.tablio.hr` and `api-stage.tablio.hr` have tunnel ingress to `http://traefik:80` **without rewriting `Host`**.
+- Each hostname also has a proxied CNAME to `<tunnel-id>.cfargotunnel.com`.
+- CNAME alone is not sufficient. Ingress alone is not sufficient. Both are required.
+- The cloudflared connector runs on WSL only, on the Docker network that Traefik uses. It does not run on HEL1.
+- Local Traefik must accept the tunnel hop on the HTTP entrypoint. That hop is not a public HTTP surface.
+
+`develop` never deploys to HEL1. `main` never changes the stage tunnel or `*-stage` DNS. Using the Cloudflare API from HEL1 to bootstrap stage records is a one-off, not the standing owner of stage.
 
 ### 3. Host isolation — surface only
 
@@ -106,7 +114,8 @@ The tenant boundary holds outside the HTTP request.
 - Each environment has its own Postgres instance and its own `SECRET_KEY`.
 - Stage deploy must not touch HEL1 or production DNS.
 - Production deploy must not touch the stage tunnel or `*-stage` DNS.
-- The Cloudflare DNS upsert credential is not the Traefik ACME/TLS credential.
+- Stage and production Cloudflare upsert secrets live in **separate GitHub Environments**. A production environment must not hold the stage tunnel id. A stage environment must not hold production deploy host or production-only secret names.
+- The Cloudflare DNS upsert credential is **not** the Traefik ACME/TLS credential. Same account, two credentials, two jobs. Sharing one all-zones token for both jobs is a temporary operational shortcut, not this decision.
 - No Cloudflare token lives in the API repository.
 
 ### 10. PostGIS only via the Docker network
@@ -132,6 +141,10 @@ The only `develop` → `main` path is a **Promote to production** pull request.
 - **Default tenant** — rejected because of data-leak risk.
 - **Shared admin/API host** — rejected because it weakens the security boundary.
 - **Direct deploy `develop` → production** — rejected.
+- **One Cloudflare token for DNS upsert and Traefik ACME** — rejected because rotation and blast radius are different jobs.
+- **CNAME-only stage without tunnel ingress** — rejected because the hostname never reaches WSL Traefik.
+- **Stage tunnel connector on HEL1** — rejected because production must not own the stage hop.
+- **HEL1 as the standing owner of stage DNS or the stage tunnel** — rejected. Bootstrap via the Cloudflare API is not the ongoing release path.
 
 ## Consequences
 
@@ -139,7 +152,7 @@ The only `develop` → `main` path is a **Promote to production** pull request.
 
 - Host and tenant are separate concerns, so a shared API host cannot accidentally become “the” tenant.
 - Release is repeatable: stage from `develop`, production only after Promote.
-- Blast radius is smaller: stage credentials and deploy rights cannot change production.
+- Blast radius is smaller: stage credentials and deploy rights cannot change production. Separate GitHub Environments keep the stage tunnel id out of production and production deploy host out of stage.
 - Scoped querysets and explicit Celery `tenant_id` reduce accidental cross-tenant reads.
 
 ### Negative
@@ -151,6 +164,7 @@ The only `develop` → `main` path is a **Promote to production** pull request.
 
 - The same image runs in both environments; runtime configuration stays separate.
 - A tenant does not need a custom domain to operate on the shared API host.
+- Stage Traefik listening on HTTP for the tunnel hop is an implementation of this ingress contract, not a decision to expose stage on the public internet without TLS. Edge TLS remains at Cloudflare.
 
 ## See also
 
@@ -160,4 +174,4 @@ The only `develop` → `main` path is a **Promote to production** pull request.
 
 This ADR does not specify container IDs, script names, Redis database indexes, workflow filenames, or CI step lists. Those belong in the API README and the implementation plan.
 
-It does not decide venue, floor-plan, reservation, inventory, or staff domain models. It does not decide a tenant portal or reception login.
+It does not decide venue, floor-plan, reservation, inventory, or staff domain models. Those belong in a later product-domain ADR. It does not decide a tenant portal or reception login.
