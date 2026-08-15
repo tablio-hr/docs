@@ -20,6 +20,7 @@ Tablio writes platform ADRs **before** the first implementation when the decisio
 | [0010](0010-invoices-and-fiscalization.md) | Invoices and Fiscalization | Proposed |
 | [0011](0011-payments-and-settlement.md) | Payments and Settlement | Proposed |
 | [0012](0012-pos-tickets-ordering-and-service-workflow.md) | POS Tickets, Ordering and Service Workflow | Proposed |
+| [0013](0013-tables-service-areas-and-seating.md) | Tables, Service Areas and Seating | Proposed |
 
 ## ADR Roadmap
 
@@ -41,7 +42,6 @@ Feature UX and ordinary implementation details remain outside ADRs.
 
 | ADR | Planned title | Status |
 |-----|---------------|--------|
-| 0013 | Tables, Service Areas and Seating | Planned |
 | 0014 | Kitchen, Bar Production Routing and KDS | Planned |
 | 0015 | Reservations, Waitlist and Guest Seating | Planned |
 | 0016 | Price Lists, Discounts, Comps and Approval Rules | Planned |

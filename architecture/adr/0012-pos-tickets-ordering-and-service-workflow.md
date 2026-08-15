@@ -10,6 +10,8 @@ A production `POSTED` path remains blocked until ADR 0009 (tax formula and round
 
 This ADR does not authorize a kitchen display protocol, table-reservation product, or POS application code.
 
+Amended 2026-08-15: seating session owned by ADR 0013.
+
 ## Date
 
 2026-08-15
@@ -526,3 +528,18 @@ This ADR does not define:
 - accounting journals
 - partial return or refund documents
 - POS screen layout
+
+## Amendment — 2026-08-15: Seating session owned by ADR 0013
+
+The original Decision 1 service context (table / takeaway) and Decision 11 “transfer to another table” remain in the original text. ADR 0013 owns the seating model.
+
+```text
+Ticket belongs to an optional seating_session_id,
+not permanently to a table_id.
+```
+
+“Transfer table” means changing `SeatingSession` membership when the destination table is free, or an explicit `SeatingSessionMerge` when two active sessions are combined. Adding a free table is not merge.
+
+Finalization freezes a `service_context_snapshot` of every membership that is active at freeze time. A frozen `PAYMENT_IN_PROGRESS` service-context snapshot still cannot change.
+
+This amendment does not change Ticket lifecycle, production batches, quantity rules, `VOIDED`, atomic `POSTED`, commercial ownership after split, or “only `POSTED` creates `SALE`”.
