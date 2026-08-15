@@ -591,3 +591,25 @@ einvoice.reporting_resolve
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-15: Accounting export permissions owned by ADR 0025
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0025 owns accounting posting and export. `accounting.view` does not grant pack download. Batch prepare, period close, and delivery resolve stay separated.
+
+ADR 0025 adds:
+
+```text
+accounting.view
+accounting.mapping_manage
+accounting.period_close
+accounting.export_prepare
+accounting.export_download
+accounting.export_submit
+accounting.export_resolve
+accounting.connection_manage
+accounting.security_manage
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

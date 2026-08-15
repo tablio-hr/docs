@@ -419,3 +419,11 @@ The original Decision that this ADR governs outgoing sales Invoices only remain 
 ADR 0024 now owns inbound `EInvoiceExchangeRecord`, MANUAL and API receive, recipient fiscalization, deadline, and AP handoff. Outgoing Invoice, B2C fiscalization, and issued-eInvoice exchange stay this ADR. Recipient fiscalization of a received supplier eInvoice is not an outgoing sales fiscalization.
 
 This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.
+
+## Amendment — 2026-08-15: Accounting export of issued Invoice owned by ADR 0025
+
+The original Decision that this ADR governs outgoing sales Invoices only, and that external failure never mutates or renumbers an Invoice, remain in the original text.
+
+ADR 0025 may export an `ISSUED` Invoice as an accounting source. Issued or fiscalized is not accounting exported. racunai.hr must not re-issue the Tablio legal invoice. A technical provider ACK is not `BOOKED_CONFIRMED`.
+
+This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.

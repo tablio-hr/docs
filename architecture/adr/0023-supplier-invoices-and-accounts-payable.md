@@ -604,3 +604,13 @@ Fiscal `ACKNOWLEDGED` is not `POSTED` and does not create `APOpenItem`. Handoff 
 `EInvoiceBusinessFingerprint` is an extra receive-side duplicate protection. The AP duplicate key in this ADR remains. After `POSTED`, a corrected eInvoice revision does not overwrite the posted invoice; use a credit or debit note or the compensation workflow here. ADR 0023 owns the business reject or dispute decision; ADR 0024 sends any required eReporting transport.
 
 This amendment does not change one `APOpenItem` per posted document, non-negative amounts, or the match reservation rules.
+
+## Amendment — 2026-08-15: Accounting posting and export owned by ADR 0025
+
+The original Decision that this ADR owns the AP lifecycle, and that Tablio `POSTED` is not a racunai.hr journal, remain in the original text.
+
+ADR 0025 now owns GL mapping, accounting period lock, `AccountingExportBatch`, `AccountingExportDelivery`, and the racunai.hr outbox. This ADR still owns matching, approval, `POSTED`, `APOpenItem`, and supplier payment.
+
+`POSTED` is not exported. Delivery `REJECTED` does not void `APOpenItem`. A technical provider ACK is not `BOOKED_CONFIRMED`. `BOOKED_CONFIRMED` does not mark the supplier paid. Late-entry still keeps original issue and supply dates; the export posting date uses an open 0025 period.
+
+This amendment does not change one `APOpenItem` per posted document, non-negative amounts, or the match reservation rules.

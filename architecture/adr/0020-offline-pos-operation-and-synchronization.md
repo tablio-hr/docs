@@ -433,3 +433,11 @@ The original Decision that the server is the only canonical authority remain in 
 ADR 0024 owns inbound eInvoice receive and recipient fiscalization. An offline POS device must not receive a canonical eInvoice, send recipient fiscalization, confirm manual evidence, or store intermediary credentials. After sync it may show an allowed AP status only.
 
 This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.
+
+## Amendment — 2026-08-15: Accounting export is server-only
+
+The original Decision that the server is the only canonical authority remain in the original text.
+
+ADR 0025 owns accounting posting and export. An offline POS device must not prepare, download, or submit an accounting batch, and must not store racunai.hr credentials. Offline cash is not an export source until the server has accepted it.
+
+This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.
