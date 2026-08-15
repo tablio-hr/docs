@@ -470,3 +470,18 @@ device.security_manage
 A human business action still needs effective device capability **and** an operator permission from this catalog.
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or emergency override.
+
+## Amendment — 2026-08-15: Offline authorization owned by ADR 0020
+
+The original Decision that PIN is not enough for an unknown device, and that the backend authorizes by permission, remain in the original text.
+
+ADR 0020 owns `OfflineAuthorization` and a short, device-bound PIN cache. The device cannot widen permissions. v1 rejects second-approver and emergency override while offline.
+
+ADR 0020 adds:
+
+```text
+offline.lease_manage
+offline.drain_exception
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

@@ -383,3 +383,13 @@ This ADR does not define:
 - partial return or refund documents
 - cross-border eInvoice
 - recurring or advance invoices
+
+## Amendment — 2026-08-15: Offline cash is not fiscal success
+
+The original Decision that invoice numbers and fiscalization are server-owned, and that external failure never mutates or renumbers an Invoice, remain in the original text.
+
+ADR 0020 may record offline cash. That cash movement is **not** proof that an invoice was issued or fiscalized. A Ticket must not become fully `POSTED` from a local cash movement alone.
+
+Offline invoice finalization is allowed only if this ADR later defines a pre-reserved number/block **and** an allowed offline fiscal flow. Without that, the payment stays `PENDING_DOCUMENT` / `PENDING_FISCALIZATION`. The guest must not be shown a successful fiscalization that did not happen.
+
+This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.
