@@ -375,3 +375,11 @@ ADR 0019 owns POSDevice registration, credential, assignment, `REASSIGNING`, and
 A `SUSPENDED`, `COMPROMISED`, or `RETIRED` device may retry a committed payment result or recover `UNKNOWN` status without a new write. It must not start a new sale, payment, or refund.
 
 This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.
+
+## Amendment — 2026-08-15: Offline cash and card owned by ADR 0020
+
+The original Decision that `UNKNOWN` is not `CAPTURED`, and that a later provider result binds the same Payment, remain in the original text.
+
+ADR 0020 owns the offline command log. Offline cash is not `POSTED` and not fiscal success. The POS app must not declare a card `CAPTURED`. A later provider result updates the **same** Payment.
+
+This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.

@@ -281,3 +281,11 @@ This ADR does not define:
 - staff identity and operator authorization
 - offline POS synchronization
 - payments, tax, or fiscal XML
+
+## Amendment — 2026-08-15: Offline send is QUEUED_LOCALLY
+
+The original Decision that Waiter Send is all-or-nothing, instructions share one `dispatch_id`, and a retry with the same idempotency key returns the same dispatch, remain in the original text.
+
+ADR 0020 may queue a send while disconnected. That state is `QUEUED_LOCALLY`. It is not kitchen receipt. `DELIVERED_TO_STATION` and `ACKNOWLEDGED_BY_STATION` stay this ADR. A local printer is not proof that the server or KDS received the send.
+
+This amendment does not change destination resolution, fail-closed routing, or instruction immutability.

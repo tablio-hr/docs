@@ -423,3 +423,13 @@ This ADR does not define:
 - KDS screen UX
 - exact grant TTL, replay window, rotation overlap, or clock-skew threshold
 - POS screen layout
+
+## Amendment — 2026-08-15: Offline lease and replay owned by ADR 0020
+
+The original Decision that one `ACTIVE` device belongs to one tenant and one location, and that online anti-replay covers method, path, body hash, device, generation, timestamp, and nonce, remain in the original text.
+
+ADR 0020 owns `OfflineLease`, the signed command log, and `SyncSession`. At most one active lease per device and business day. Sequence never resets on the same `device_id`. Online anti-replay stays this ADR; offline replay is ADR 0020.
+
+Unknown commands from a `COMPROMISED` credential generation go to `SECURITY_QUARANTINE`. Already `ACCEPTED` commands stay valid. `REASSIGNING` still requires no open offline queue.
+
+This amendment does not change enrollment proof-of-possession, `EffectiveDeviceConfig`, or capability ceiling.

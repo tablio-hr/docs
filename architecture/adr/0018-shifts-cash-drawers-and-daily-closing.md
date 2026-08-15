@@ -486,3 +486,13 @@ ADR 0019 owns `EffectiveDeviceConfig`, including device↔drawer pairing. This A
 A closing claim that depends on a device blocks that device from leaving `REASSIGNING`.
 
 This amendment does not change StaffShift, BusinessDay close, two-sided `CashTransfer`, or the persistent `SAFE` ledger.
+
+## Amendment — 2026-08-15: OFFLINE_DRAIN owned by ADR 0020
+
+The original Decision `OPEN → CLOSING → CLOSED` remains in the original text.
+
+ADR 0020 inserts `OFFLINE_DRAIN` before `CLOSING`. Heartbeat is not proof the outbox is empty. Close waits for lease return or proven expiry, signed sequence high-waters, and no financial `PENDING` / `UNKNOWN` / `CONFLICT` / `MANUAL_REVIEW` / `SECURITY_QUARANTINE`.
+
+A lost-device exception seals the missing sequence range. Commands that later arrive from that range must not mutate the closed snapshot. A financial correction is a late adjustment on the current `OPEN` day.
+
+This amendment does not change StaffShift, drawer/wallet close, two-sided `CashTransfer`, or the persistent `SAFE` ledger.
