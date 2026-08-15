@@ -365,3 +365,13 @@ SAFE is not a daily session and is not reset at day close.
 ```
 
 This amendment does not change Payment, allocation, Intent, Instruction, Tip fiscal facts, or Settlement.
+
+## Amendment — 2026-08-15: POSDevice registration owned by ADR 0019
+
+The original Decision 2 “the backend does not trust an arbitrary client-sent `device_id`” and the authenticated-device rule on a Viva result remain in the original text.
+
+ADR 0019 owns POSDevice registration, credential, assignment, `REASSIGNING`, and `EffectiveDeviceConfig`. A registered POS device is not Android-only; Viva remains the first card path on a registered device.
+
+A `SUSPENDED`, `COMPROMISED`, or `RETIRED` device may retry a committed payment result or recover `UNKNOWN` status without a new write. It must not start a new sale, payment, or refund.
+
+This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.

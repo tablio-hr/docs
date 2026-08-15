@@ -476,3 +476,13 @@ This ADR does not define:
 - BI reports (ADR 0026)
 - default cutoff time, denomination lists, or how often `SafeCount` must run
 - POS screen layout
+
+## Amendment — 2026-08-15: Device-to-drawer mapping owned by ADR 0019
+
+The original Decision that a CashDrawer is not a POS device, and that several devices may share a drawer only if the location explicitly allows it, remain in the original text.
+
+ADR 0019 owns `EffectiveDeviceConfig`, including device↔drawer pairing. This ADR still owns `cash_operation_mode` and whether the location allows a shared drawer.
+
+A closing claim that depends on a device blocks that device from leaving `REASSIGNING`.
+
+This amendment does not change StaffShift, BusinessDay close, two-sided `CashTransfer`, or the persistent `SAFE` ledger.

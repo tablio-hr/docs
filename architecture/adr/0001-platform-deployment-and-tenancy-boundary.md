@@ -175,3 +175,11 @@ The only `develop` → `main` path is a **Promote to production** pull request.
 This ADR does not specify container IDs, script names, Redis database indexes, workflow filenames, or CI step lists. Those belong in the API README and the implementation plan.
 
 It does not decide venue, floor-plan, reservation, inventory, or staff domain models. Those belong in a later product-domain ADR. It does not decide a tenant portal or reception login.
+
+## Amendment — 2026-08-15: POS DeviceCredential may select the tenant
+
+The original Decision 4 trust order and “the client must not choose a tenant” remain in the original text.
+
+ADR 0019 owns POS device registration and `DeviceCredential`. Authentication may select the tenant via an API key **or** a valid POS `DeviceCredential`. The client still must not send `tenant_id`. Machine API keys remain for non-POS integrations.
+
+This amendment does not change host isolation, application-level tenancy, Django admin as the platform surface, or the Promote-to-production path.

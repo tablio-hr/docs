@@ -448,3 +448,25 @@ business_day.exception
 `operator_requires_open_staff_shift` is an ADR 0018 location rule on top of this ADR’s identity, episode, location, session, and permission checks. An open shift is not a role.
 
 This amendment does not change `UNIQUE (tenant_id, user_identity_id)`, RoleVersion, maker-checker, or emergency override.
+
+## Amendment — 2026-08-15: Device trust and assignment owned by ADR 0019
+
+The original Decision 8 `OperatorSession` fields and “PIN is not enough for an unknown device” remain in the original text.
+
+ADR 0019 owns device registration, credential, and location assignment. `OperatorSession` also binds `assignment_generation`. `REASSIGNING`, suspend, compromise, or retire revokes the session. The session does not move to a replacement device.
+
+ADR 0019 adds:
+
+```text
+device.enroll
+device.assign
+device.configure
+device.suspend
+device.retire
+device.credential_rotate
+device.security_manage
+```
+
+A human business action still needs effective device capability **and** an operator permission from this catalog.
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or emergency override.
