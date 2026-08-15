@@ -375,3 +375,11 @@ The original Decision that this ADR owns the tax model, and that purchase / inpu
 ADR 0023 records input VAT evidence, deductible and non-deductible parts, reverse charge, exemption, jurisdiction, and rule version on the supplier invoice. This ADR still owns the tax model and recoverability math.
 
 This amendment does not change sales-tax calculation, rounding ownership, or fiscal XML.
+
+## Amendment — 2026-08-15: Inbound eInvoice TAX_VALIDATION recorded by ADR 0024
+
+The original Decision that this ADR owns the tax model, and that fiscalization does not calculate or mutate tax, remain in the original text.
+
+ADR 0024 records inbound `TAX_VALIDATION` on a received eInvoice. This ADR still owns the tax model and recoverability math. Intermediary technical ACK is not tax calculation.
+
+This amendment does not change sales-tax calculation, rounding ownership, or outgoing fiscal XML.

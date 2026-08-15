@@ -411,3 +411,11 @@ The original Decision that this ADR governs outgoing sales Invoices only remain 
 ADR 0023 owns the canonical `SupplierInvoice` and AP subledger. Incoming eInvoice transport and recipient fiscalization stay ADR 0024. `legal_entity_id` on the AP invoice is ADR 0023.
 
 This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.
+
+## Amendment — 2026-08-15: Inbound receive and recipient fiscalization owned by ADR 0024
+
+The original Decision that this ADR governs outgoing sales Invoices only remain in the original text.
+
+ADR 0024 now owns inbound `EInvoiceExchangeRecord`, MANUAL and API receive, recipient fiscalization, deadline, and AP handoff. Outgoing Invoice, B2C fiscalization, and issued-eInvoice exchange stay this ADR. Recipient fiscalization of a received supplier eInvoice is not an outgoing sales fiscalization.
+
+This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.
