@@ -11,6 +11,7 @@ A production `POSTED` path remains blocked until ADR 0009 (tax formula and round
 This ADR does not authorize a kitchen display protocol, table-reservation product, or POS application code.
 
 Amended 2026-08-15: seating session owned by ADR 0013.
+Amended 2026-08-15: kitchen routing and KDS owned by ADR 0014.
 
 ## Date
 
@@ -543,3 +544,22 @@ not permanently to a table_id.
 Finalization freezes a `service_context_snapshot` of every membership that is active at freeze time. A frozen `PAYMENT_IN_PROGRESS` service-context snapshot still cannot change.
 
 This amendment does not change Ticket lifecycle, production batches, quantity rules, `VOIDED`, atomic `POSTED`, commercial ownership after split, or “only `POSTED` creates `SALE`”.
+
+## Amendment — 2026-08-15: Kitchen routing and KDS owned by ADR 0014
+
+The original Decision 3 `ProductionInstruction` content, progress events, quantity invariant, and “later sends create new batches” remain in the original text.
+
+ADR 0014 owns destination resolution, all-or-nothing classification, `dispatch_id`, waiter readiness notification, and KDS cancel visibility.
+
+```text
+Waiter Send is one action for the whole current Ticket
+(all not_sent_qty).
+
+One send transaction emits one or more destination
+ProductionInstructions linked by dispatch_id,
+or sends nothing.
+```
+
+The waiter never chooses destinations or a subset of lines. Kitchen work is not an ADR 0005 Production Order. KDS reads sent instruction snapshots, not the live Ticket.
+
+This amendment does not change instruction immutability, progress events, `VOIDED`, atomic `POSTED`, or “only `POSTED` creates `SALE`”.
