@@ -28,6 +28,7 @@ Tablio writes platform ADRs **before** the first implementation when the decisio
 | [0018](0018-shifts-cash-drawers-and-daily-closing.md) | Shifts, Cash Drawers and Daily Closing | Proposed |
 | [0019](0019-pos-devices-registration-and-configuration.md) | POS Devices, Registration and Configuration | Proposed |
 | [0020](0020-offline-pos-operation-and-synchronization.md) | Offline POS Operation and Synchronization | Proposed |
+| [0021](0021-customer-profiles-consent-and-loyalty.md) | Customer Profiles, Consent and Loyalty | Proposed |
 
 ## ADR Roadmap
 
@@ -49,7 +50,6 @@ Feature UX and ordinary implementation details remain outside ADRs.
 
 | ADR | Planned title | Status |
 |-----|---------------|--------|
-| 0021 | Customer Profiles, Consent and Loyalty | Planned |
 | 0022 | Ordering Channels, Delivery and External Platforms | Planned |
 | 0023 | Supplier Invoices and Accounts Payable | Planned |
 | 0024 | Incoming eInvoices and Recipient Fiscalization | Planned |

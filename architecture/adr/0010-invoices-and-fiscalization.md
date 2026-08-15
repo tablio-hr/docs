@@ -393,3 +393,13 @@ ADR 0020 may record offline cash. That cash movement is **not** proof that an in
 Offline invoice finalization is allowed only if this ADR later defines a pre-reserved number/block **and** an allowed offline fiscal flow. Without that, the payment stays `PENDING_DOCUMENT` / `PENDING_FISCALIZATION`. The guest must not be shown a successful fiscalization that did not happen.
 
 This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.
+
+## Amendment — 2026-08-15: Invoice recipient snapshot owned against ADR 0021
+
+The original Decision that `recipient_snapshot` is frozen on the issued Invoice, and that external failure never mutates or renumbers an Invoice, remain in the original text.
+
+ADR 0021 owns `CustomerProfile`. The live profile is **not** the invoice recipient. A later profile edit or pseudonymization must not rewrite an issued Invoice.
+
+`LoyaltyEarnSource` binds to `invoice_id` or the fiscal document, not to a mutable Ticket. Tax and fiscal treatment of a loyalty benefit stay this ADR and ADR 0009.
+
+This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.

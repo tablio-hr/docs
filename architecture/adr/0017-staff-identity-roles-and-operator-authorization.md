@@ -485,3 +485,30 @@ offline.drain_exception
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-15: Customer, consent, and loyalty permissions owned by ADR 0021
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0021 owns `CustomerProfile`, `ConsentEvent`, and the loyalty ledger. `customer.view` does not grant contacts, consent proof, or loyalty ledger. Merge of two accounts for the same program is blocked until a maker-checker loyalty resolution.
+
+ADR 0021 adds:
+
+```text
+customer.view
+customer.contact_view
+customer.create
+customer.update
+customer.merge
+customer.restrict
+consent.record
+consent.proof_view
+loyalty.view
+loyalty.enroll
+loyalty.redeem
+loyalty.adjust
+loyalty.suspend
+privacy.request_manage
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

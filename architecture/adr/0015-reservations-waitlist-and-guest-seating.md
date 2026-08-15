@@ -338,3 +338,11 @@ reservation.overbook
 ```
 
 Who may hold that permission, and how the operator session is proven, stay ADR 0017. This amendment does not change capacity modes, `ReservationTableAssignment`, or Seat party.
+
+## Amendment — 2026-08-15: Guest snapshot is not a CustomerProfile
+
+The original Decision that a Reservation holds guest name and contact, and that a waitlist entry may hold name or contact, remain in the original text.
+
+ADR 0021 owns `CustomerProfile`. A reservation or waitlist guest snapshot is not a CRM row. Creating a profile is an explicit, audited action. A later profile edit must not rewrite the frozen snapshot. Reservation and waitlist notes stay on that process, not on a CRM note.
+
+This amendment does not change capacity modes, `ReservationTableAssignment`, or Seat party.
