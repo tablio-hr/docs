@@ -577,3 +577,11 @@ session that has no cash activity for that Ticket.
 ```
 
 This amendment does not change Ticket lifecycle, production batches, `VOIDED`, atomic `POSTED`, or “only `POSTED` creates `SALE`”.
+
+## Amendment — 2026-08-15: Optional customer profile owned by ADR 0021
+
+The original Decision that a Ticket may hold a guest or business recipient, and that `POSTED` is atomic, remain in the original text.
+
+ADR 0021 owns `CustomerProfile`. A Ticket may optionally link a profile. The recipient or guest snapshot is frozen. Walk-in and pay without a profile remain valid. `POSTED` does not itself write a loyalty ledger. Earn binds an ADR 0010 invoice or fiscal source.
+
+This amendment does not change Ticket lifecycle, production batches, `VOIDED`, atomic `POSTED`, or “only `POSTED` creates `SALE`”.

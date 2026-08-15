@@ -326,3 +326,22 @@ Unused approvals expire when the staff loses the right (`SUSPENDED`, `ENDED`, lo
 `emergency.override` is the ADR 0017 right. It does not lift a required maker-checker.
 
 This amendment does not change PriceList selection, Reprice, stacking order, or atomic consume.
+
+## Amendment — 2026-08-15: Loyalty redemption owned by ADR 0021
+
+The original Decision that application order ends with Comp, and that a line total cannot go negative, remain in the original text.
+
+ADR 0021 owns loyalty points and `LoyaltyRedemptionAuthorization`. Redemption is a distinct allocated Ticket benefit, not a Comp and not a Payment. Application order is:
+
+```text
+base
+→ automatic (0008)
+→ manual line discounts
+→ ticket-level discount allocation
+→ loyalty redemption allocation
+→ Comp
+```
+
+Comp stays last. Consume requires a live authorization and happens in the same transaction as the Ticket benefit.
+
+This amendment does not change PriceList selection, Reprice, or atomic approval consume.

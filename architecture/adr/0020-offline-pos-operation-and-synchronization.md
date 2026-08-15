@@ -405,3 +405,15 @@ This ADR does not define:
 - conflict-center UX chrome
 - exact lease TTL, PIN-cache TTL, or clock-skew threshold
 - POS screen layout
+
+## Amendment — 2026-08-15: Offline loyalty owned by ADR 0021
+
+The original Decision that the server is the only canonical authority, and that the device writes signed commands rather than a second backend, remain in the original text.
+
+ADR 0021 owns the loyalty ledger. An offline device may show the last confirmed balance as informational. Cached or locally estimated points must be visually distinct from the server-confirmed balance.
+
+The device writes a signed `AccrueLoyaltyEarn` command. Local UI is `PENDING_SYNC` only. The device must not create a canonical `LoyaltyLedgerEntry`. After server accept, the server creates `EARN_PENDING`. A rejected offline sale creates no points.
+
+v1 forbids offline redemption from a cached balance. Offline redemption would need an exclusive server-issued budget or lease and a valid `LoyaltyRedemptionAuthorization`. v1 issues neither.
+
+This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.

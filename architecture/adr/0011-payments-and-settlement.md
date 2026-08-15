@@ -383,3 +383,11 @@ The original Decision that `UNKNOWN` is not `CAPTURED`, and that a later provide
 ADR 0020 owns the offline command log. Offline cash is not `POSTED` and not fiscal success. The POS app must not declare a card `CAPTURED`. A later provider result updates the **same** Payment.
 
 This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.
+
+## Amendment — 2026-08-15: Loyalty points are not a Payment
+
+The original Decision that Payment records settlement, and that later hooks may include loyalty, remain in the original text.
+
+ADR 0021 owns the loyalty ledger. Points are not a Payment, wallet, or tender. Redemption is an ADR 0016 Ticket benefit, not a capture. Gift cards and stored value stay ADR 0030.
+
+This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.
