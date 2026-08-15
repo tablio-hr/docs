@@ -289,3 +289,11 @@ The original Decision that Waiter Send is all-or-nothing, instructions share one
 ADR 0020 may queue a send while disconnected. That state is `QUEUED_LOCALLY`. It is not kitchen receipt. `DELIVERED_TO_STATION` and `ACKNOWLEDGED_BY_STATION` stay this ADR. A local printer is not proof that the server or KDS received the send.
 
 This amendment does not change destination resolution, fail-closed routing, or instruction immutability.
+
+## Amendment — 2026-08-15: Channel cancel and provider-ack send owned by ADR 0022
+
+The original Decision that a sent ProductionInstruction is immutable, and that cancel is a visible event, remain in the original text.
+
+ADR 0022 owns external cancel after send. The instruction is not deleted. Production status is not a channel status. When the connection uses `REQUIRE_PROVIDER_ACK_BEFORE_PRODUCTION`, kitchen send is blocked until provider acknowledgement.
+
+This amendment does not change destination resolution, fail-closed routing, or instruction immutability.

@@ -345,3 +345,11 @@ base
 Comp stays last. Consume requires a live authorization and happens in the same transaction as the Ticket benefit.
 
 This amendment does not change PriceList selection, Reprice, or atomic approval consume.
+
+## Amendment — 2026-08-15: Channel money components owned by ADR 0022
+
+The original Decision that a TicketLine snapshot is the frozen financial result, and that a line total cannot go negative, remain in the original text.
+
+ADR 0022 owns external displayed price, platform discount, merchant-funded discount, subsidy, fees, and `price_mismatch_policy`. Those amounts stay un-netted. The customer-total equation must reconcile exactly. Commission is not a TicketLine discount or Comp. This ADR still owns the internal list and the final TicketLine snapshot.
+
+This amendment does not change PriceList selection, Reprice, or atomic approval consume.

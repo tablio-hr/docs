@@ -346,3 +346,11 @@ The original Decision that a Reservation holds guest name and contact, and that 
 ADR 0021 owns `CustomerProfile`. A reservation or waitlist guest snapshot is not a CRM row. Creating a profile is an explicit, audited action. A later profile edit must not rewrite the frozen snapshot. Reservation and waitlist notes stay on that process, not on a CRM note.
 
 This amendment does not change capacity modes, `ReservationTableAssignment`, or Seat party.
+
+## Amendment — 2026-08-15: Ordering adapters owned by ADR 0022
+
+The original Decision that a Reservation may store `external_source` and `external_reservation_id`, unique per tenant and source, remain in the original text.
+
+ADR 0022 owns channel and OTA **ordering** adapters, `ChannelOrder`, and provider inbox/outbox. The reservation external-id contract stays this ADR.
+
+This amendment does not change capacity modes, `ReservationTableAssignment`, or Seat party.

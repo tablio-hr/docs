@@ -585,3 +585,11 @@ The original Decision that a Ticket may hold a guest or business recipient, and 
 ADR 0021 owns `CustomerProfile`. A Ticket may optionally link a profile. The recipient or guest snapshot is frozen. Walk-in and pay without a profile remain valid. `POSTED` does not itself write a loyalty ledger. Earn binds an ADR 0010 invoice or fiscal source.
 
 This amendment does not change Ticket lifecycle, production batches, `VOIDED`, atomic `POSTED`, or “only `POSTED` creates `SALE`”.
+
+## Amendment — 2026-08-15: ChannelOrder is not a Ticket
+
+The original Decision that a Ticket holds a sales channel and that cancel after send follows this ADR, remain in the original text.
+
+ADR 0022 owns `ChannelOrder`. An external payload never is the Ticket. Accept creates at most one Ticket. Retry accept returns the same Ticket. An order fence makes cancel or deadline win over a stale accept. Local accept is not provider acknowledgement. Walk-in POS may still create a Ticket without a `ChannelOrder`.
+
+This amendment does not change Ticket lifecycle, production batches, `VOIDED`, atomic `POSTED`, or “only `POSTED` creates `SALE`”.

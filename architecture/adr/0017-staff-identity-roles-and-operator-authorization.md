@@ -512,3 +512,28 @@ privacy.request_manage
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-15: Channel and delivery permissions owned by ADR 0022
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0022 owns `OrderingChannel`, `ExternalConnection`, and `ChannelOrder`. `channel.view` does not grant credentials or raw payload.
+
+ADR 0022 adds:
+
+```text
+channel.view
+channel.configure
+channel.pause
+channel.security_manage
+channel.raw_payload_view
+order.accept_external
+order.reject_external
+order.cancel_external
+order.resolve_external
+delivery.assign
+delivery.update
+delivery.override
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

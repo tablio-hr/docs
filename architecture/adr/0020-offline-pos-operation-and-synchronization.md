@@ -417,3 +417,11 @@ The device writes a signed `AccrueLoyaltyEarn` command. Local UI is `PENDING_SYN
 v1 forbids offline redemption from a cached balance. Offline redemption would need an exclusive server-issued budget or lease and a valid `LoyaltyRedemptionAuthorization`. v1 issues neither.
 
 This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.
+
+## Amendment — 2026-08-15: Channel webhooks are server-only
+
+The original Decision that the server is the only canonical authority remain in the original text.
+
+ADR 0022 owns provider inbox and outbox. Webhooks land only on the central server. An offline device must not ingest a provider webhook as canonical, must not accept a `ChannelOrder` the server already accepted, and must not emit a provider acknowledgement. After sync it receives the accepted Ticket or `ChannelOrder` snapshot. Local print is not platform acknowledgement.
+
+This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.

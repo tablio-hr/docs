@@ -639,3 +639,11 @@ This ADR does not define:
 - brand-group identity
 - exact earn-available delay, membership-number format, HMAC rotation interval, or verification-method UX
 - POS screen layout
+
+## Amendment — 2026-08-15: Channel customer snapshot owned by ADR 0022
+
+The original Decision that a reservation, Ticket, or Invoice snapshot is not a live `CustomerProfile`, and that profile create is explicit, remain in the original text.
+
+ADR 0022 owns the channel customer and delivery snapshots. An inbound order must not auto-create a profile, merge by phone, write marketing consent, touch loyalty, or lift suppression. Raw provider payload is bounded personal data, not a CRM note and not an indefinite audit substitute.
+
+This amendment does not change tenant-scoped profiles, `ConsentEvent` ordering, or the loyalty ledger.
