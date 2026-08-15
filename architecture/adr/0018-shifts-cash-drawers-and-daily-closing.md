@@ -504,3 +504,11 @@ The original Decision that StaffShift, drawer session, `SAFE`, and `BusinessDay`
 ADR 0025 may export a `CLOSED` `BusinessDay` cash summary as a control / reconciliation source. Day close is not GL period close. The summary must not re-post cash already posted from payments. Only unposted float, variance, or other referenced movements may create extra journal lines.
 
 This amendment does not change StaffShift, drawer/wallet close, two-sided `CashTransfer`, or the persistent `SAFE` ledger.
+
+## Amendment — 2026-08-16: Analytics snapshot owned by ADR 0026
+
+The original Decision that a `CLOSED` BusinessDay snapshot is immutable, and that late results do not mutate it, remain in the original text.
+
+ADR 0026 owns `AnalyticsSnapshot`. That object is not this ADR’s day-close snapshot. Location reports use the timezone and `BusinessDay` bounds snapshotted on open. Late adjustments feed an analytics restatement and do not mutate `AS_RECORDED`. A cash summary must not double-count money already represented by Payment facts.
+
+This amendment does not change StaffShift, drawer/wallet close, two-sided `CashTransfer`, or the persistent `SAFE` ledger.

@@ -647,3 +647,11 @@ The original Decision that a reservation, Ticket, or Invoice snapshot is not a l
 ADR 0022 owns the channel customer and delivery snapshots. An inbound order must not auto-create a profile, merge by phone, write marketing consent, touch loyalty, or lift suppression. Raw provider payload is bounded personal data, not a CRM note and not an indefinite audit substitute.
 
 This amendment does not change tenant-scoped profiles, `ConsentEvent` ordering, or the loyalty ledger.
+
+## Amendment — 2026-08-16: Generic analytics datasets owned by ADR 0026
+
+The original Decision that `CustomerProfile`, consent, and the loyalty ledger stay tenant-scoped, and that snapshots are not the live profile, remain in the original text.
+
+ADR 0026 owns generic reporting datasets. Those datasets are aggregates. Customer PII and note content stay out. Loyalty metrics stay a later analytics source and are not authorized as v1.
+
+This amendment does not change tenant-scoped profiles, `ConsentEvent` ordering, or the loyalty ledger.
