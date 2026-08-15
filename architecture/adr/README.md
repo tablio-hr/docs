@@ -17,6 +17,7 @@ Tablio writes platform ADRs **before** the first implementation when the decisio
 | [0007](0007-pos-modifiers.md) | POS Modifiers | Proposed |
 | [0008](0008-bundles-and-promotions.md) | Bundles and Promotions | Proposed |
 | [0009](0009-tax-model.md) | Tax Model | Proposed |
+| [0010](0010-invoices-and-fiscalization.md) | Invoices and Fiscalization | Proposed |
 
 ## Template
 
