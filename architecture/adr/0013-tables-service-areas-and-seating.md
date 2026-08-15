@@ -8,6 +8,8 @@ This ADR may be documented and merged while `Proposed`.
 
 This ADR does not authorize a floor-plan product, reservation product, KDS protocol, or POS application code.
 
+Amended 2026-08-15: reservations and Seat party owned by ADR 0015.
+
 ## Date
 
 2026-08-15
@@ -428,3 +430,23 @@ This ADR does not define:
 - offline POS synchronization
 - payments, FX, or Viva Android extras
 - tax formula, fiscal XML, or e-račun
+
+## Amendment — 2026-08-15: Reservations and Seat party owned by ADR 0015
+
+The original Decision 4 `SeatingSession` lifecycle, one active membership per table, and “Reservation may supply expected covers; the session stores actual `guest_count`” remain in the original text.
+
+ADR 0015 owns Reservation, WaitlistEntry, and **Seat party**.
+
+```text
+Seat party creates the SeatingSession.
+A reservation may link reservation_id and waitlist_entry_id.
+
+ReservationTableAssignment is not active membership.
+A confirmed assignment holds future table capacity
+against other confirmed reservations.
+
+Venue-capacity checks count active SeatingSessions
+without double-counting a linked reservation.
+```
+
+This amendment does not change occupancy derivation, table `version` locking, `SeatingSessionMerge`, or Ticket belonging to the session.
