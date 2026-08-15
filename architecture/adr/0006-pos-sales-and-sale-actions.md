@@ -5,6 +5,7 @@
 Proposed
 
 Amended 2026-08-15: `BUNDLE` has no `product_id`.
+Amended 2026-08-15: operational pre-post states owned by ADR 0012.
 
 ## Date
 
@@ -280,3 +281,24 @@ NON_STOCK may have no product_id.
 A bundle is not a `Product`. The original reservation that `BUNDLE` cannot activate in this ADR is unchanged here. Activation conditions live in ADR 0008.
 
 This amendment does not change freeze-on-add-line, tax rate at post, ticket lifecycle, or any other 0006 lock.
+
+## Amendment — 2026-08-15: Operational pre-post states owned by ADR 0012
+
+The Decision 5 commercial lifecycle remains in the original text:
+
+```text
+DRAFT → POSTED → REVERSED
+DRAFT → CANCELLED
+```
+
+ADR 0012 owns operational pre-post states (`OPEN`, `PAYMENT_IN_PROGRESS`, `VOIDED`) and the explicit `Send order` / `Accept order` transition from `DRAFT` to `OPEN`. Those states do not move the commercial `POSTED` moment earlier.
+
+```text
+Only POSTED creates SALE.
+```
+
+Freeze-on-add-line remains a per-line-version catalog and commercial snapshot. It does not make the entire Ticket immutable. Changing product, recipe, tax class, or price context before send creates a new line version or replaces the unsent line. A sent snapshot never changes.
+
+A required non-sale stock disposition for prepared or served quantity excluded from commercial posting is owned by ADR 0012. That movement is not a `SALE`. `CANCELLED` in the original 0006 sense still never produces a stock movement: it applies only to a Ticket that never executed.
+
+This amendment does not change Sale Action types, freeze-on-add-line commercial fields, tax rate at post, one location/storage/currency, or “only `POSTED` creates `SALE`”.
