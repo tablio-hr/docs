@@ -416,3 +416,35 @@ This ADR does not define:
 - KDS bump, seating, or reservation CRUD permissions beyond `reservation.overbook`
 - PIN length, lockout count, or MFA factors
 - staff roster chrome or POS screen layout
+
+## Amendment — 2026-08-15: Shift, drawer, wallet, and business-day permissions owned by ADR 0018
+
+The original Decision 5 catalog ownership and “tenants cannot invent permission names” remain in the original text.
+
+Reserved `closing.perform` is specified as `business_day.close`. `drawer.open_no_sale` stays. ADR 0018 adds:
+
+```text
+shift.clock_in
+shift.clock_out
+shift.correct
+drawer.open
+drawer.use
+drawer.handover
+drawer.cash_in
+drawer.cash_out
+drawer.safe_drop
+drawer.close
+drawer.variance_approve
+wallet.open
+wallet.close
+wallet.handover
+cash.transfer
+safe.count
+business_day.open
+business_day.close
+business_day.exception
+```
+
+`operator_requires_open_staff_shift` is an ADR 0018 location rule on top of this ADR’s identity, episode, location, session, and permission checks. An open shift is not a role.
+
+This amendment does not change `UNIQUE (tenant_id, user_identity_id)`, RoleVersion, maker-checker, or emergency override.

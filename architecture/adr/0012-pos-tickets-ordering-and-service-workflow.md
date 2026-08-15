@@ -563,3 +563,17 @@ or sends nothing.
 The waiter never chooses destinations or a subset of lines. Kitchen work is not an ADR 0005 Production Order. KDS reads sent instruction snapshots, not the live Ticket.
 
 This amendment does not change instruction immutability, progress events, `VOIDED`, atomic `POSTED`, or “only `POSTED` creates `SALE`”.
+
+## Amendment — 2026-08-15: Ticket business day owned by ADR 0018
+
+The original Decision 1 Ticket contents and lifecycle remain in the original text.
+
+ADR 0018 owns `BusinessDay`. A Ticket stamps `business_day_id` at create against the location’s current `OPEN` day. `CLOSING` and `CLOSED` reject new Tickets for that day.
+
+```text
+An active Ticket stamped to the day blocks Close business day.
+It does not by itself block close of a drawer or wallet
+session that has no cash activity for that Ticket.
+```
+
+This amendment does not change Ticket lifecycle, production batches, `VOIDED`, atomic `POSTED`, or “only `POSTED` creates `SALE`”.

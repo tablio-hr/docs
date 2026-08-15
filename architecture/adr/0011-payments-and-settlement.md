@@ -346,3 +346,22 @@ This ADR does not define:
 - incoming supplier payments or AP
 - counted-drawer UX chrome
 - POS screen layout
+
+## Amendment — 2026-08-15: Cash accountability owned by ADR 0018
+
+The original Decision 14 append-only ledger, “`CASH_SALE` references a Payment”, atomic cash refund, and “a count variance does not change sales invoices” remain in the original text.
+
+ADR 0018 owns `CashAccountableUnit`, day-scoped drawer and wallet sessions, the persistent `SAFE` ledger, two-sided `CashTransfer`, expected cash, count, variance, and business-day close.
+
+```text
+TIP_IN remains and is expected cash, not sales.
+CLOSING_DEPOSIT is CLOSING_REMOVAL.
+COUNT_ADJUSTMENT is not the close variance.
+Intra-location cash is TRANSFER_OUT + TRANSFER_IN
+in one transaction, same cash_transfer_id.
+CASH_SALE lands on the mode-required session
+(drawer or the actual operator’s wallet).
+SAFE is not a daily session and is not reset at day close.
+```
+
+This amendment does not change Payment, allocation, Intent, Instruction, Tip fiscal facts, or Settlement.
