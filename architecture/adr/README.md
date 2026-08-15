@@ -13,6 +13,7 @@ Tablio writes platform ADRs **before** the first implementation when the decisio
 | [0003](0003-warehouse-and-inventory.md) | Warehouse and Inventory | Accepted (2026-08-15) |
 | [0004](0004-procurement-and-goods-receiving.md) | Procurement and Goods Receiving | Proposed |
 | [0005](0005-recipes-and-production.md) | Recipes and Production | Proposed |
+| [0006](0006-pos-sales-and-sale-actions.md) | POS Sales and Sale Actions | Proposed |
 
 ## Template
 
