@@ -152,6 +152,10 @@ The only `develop` → `main` path is a **Promote to production** pull request.
 - The same image runs in both environments; runtime configuration stays separate.
 - A tenant does not need a custom domain to operate on the shared API host.
 
+## See also
+
+- API platform skeleton: [tablio-hr/api#1](https://github.com/tablio-hr/api/pull/1) (merge `cfb6a380dd365b84aa681b97ca318aa1fd6690f9`)
+
 ## Out of scope
 
 This ADR does not specify container IDs, script names, Redis database indexes, workflow filenames, or CI step lists. Those belong in the API README and the implementation plan.
