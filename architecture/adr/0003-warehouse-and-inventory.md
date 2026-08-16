@@ -6,6 +6,7 @@ Accepted (2026-08-15)
 
 Amended 2026-08-15: Canonical fractional-piece ledger precision.
 Amended 2026-08-15: Receipt/return reversal dependency.
+Editorially aligned 2026-08-16: Vodka examples updated to the amended model.
 
 ## Date
 
@@ -342,7 +343,7 @@ Hard-blocking all negatives in v1 is rejected; it stops service.
 - Source storage ≠ destination storage.
 - In-transit / “on the van” storage is a later hook if both legs post atomically in v1.
 
-Example: Vodice cellar `TRANSFER_OUT −700 ml` vodka and Šibenik bar `TRANSFER_IN +700 ml` on one document.
+Example: Vodice cellar `TRANSFER_OUT −1 piece` vodka and Šibenik bar `TRANSFER_IN +1 piece` on one document.
 
 ### 17. Production is not a transfer
 
@@ -391,13 +392,13 @@ Virtual locations (supplier, customer, production, inventory-loss), quarantine s
 
 **Coca-Cola, Vodice bar.** Receipt of 1 crate: the document converts 24 pieces → `RECEIPT +24 piece`. POS sale → `SALE −1 piece`. `on_hand` is 23. Rename of the product does not change the two movement snapshots.
 
-**Vodka.** Receipt of 1 bottle → `+700 ml`. Tap 0.03 L → `SALE −30 ml`. Bundle bottle + 4 Red Bulls → several `SALE` lines, still vodka `−700 ml`. Warehouse does not store “bundle”.
+**Vodka.** Receipt of 1 bottle → `+1 piece`. Tap 0.03 L → `SALE −0.042857142857 piece` from `1 × 30/700 = 3/70`. Ten pours on one line → `SALE −0.428571428571 piece` from `(10 × 30) / 700 = 3/7`, not `10 × 0.042857142857`. Bundle bottle + 4 Red Bulls → several `SALE` lines, still vodka `−1 piece`. Warehouse does not store “bundle”.
 
 **Coffee.** Receipt of a 3 kg container → `+3000 g`. Cappuccino sale → `SALE −8 g` coffee and `SALE −120 ml` milk. Stocktake at cutoff finds 50 g less than theoretical-at-cutoff → one `STOCKTAKE_VARIANCE −50 g`. Sales after cutoff are not in that variance.
 
 **House sauce.** `PRODUCTION_OUT` tomatoes, oil, garlic; `PRODUCTION_IN` house sauce. A later recipe sale deducts `−50 g` house sauce.
 
-**Transfer.** One document: Vodice cellar `TRANSFER_OUT −700 ml`; Šibenik bar `TRANSFER_IN +700 ml`.
+**Transfer.** One document: Vodice cellar `TRANSFER_OUT −1 piece`; Šibenik bar `TRANSFER_IN +1 piece`.
 
 **Retry.** The same sale posted twice with the same idempotency key and the same payload returns the original posting. The same key with a different payload returns `409`.
 
@@ -535,8 +536,12 @@ Rounding mode: ROUND_HALF_EVEN
 A portion is an exact ratio. The ratio must not be stored or calculated using binary floating-point.
 
 ```text
-30 / 700 = 3 / 70
+1 × 30 / 700 = 3 / 70
 canonical ledger quantity = 0.042857142857 piece
+
+10 × 30 / 700 = 3 / 7
+canonical ledger quantity = 0.428571428571 piece
+not 10 × 0.042857142857
 ```
 
 Rules:
@@ -550,6 +555,8 @@ Rules:
 The unavoidable consequence of fixed precision is a very small theoretical remainder after many separate portions. Seventy separately posted `3/70` pours need not sum to exactly `3 piece`. The canonical ledger value is authoritative. Physical remainder is resolved by stocktake and an `ADJUSTMENT` (or `STOCKTAKE_VARIANCE`) movement — never by a hidden correction of posted quantities.
 
 `divisible=false` still rejects any fractional `piece`. A whole closed bottle of a divisible product remains exactly `1 piece` on the ledger.
+
+Decisions 16 and 23 vodka exemplars were editorially aligned on 2026-08-16 to this amendment. They no longer use milliliters as the vodka ledger unit. A reversal copies the stored canonical quantity with the opposite sign.
 
 ## Amendment — 2026-08-15: Receipt/return reversal dependency
 
