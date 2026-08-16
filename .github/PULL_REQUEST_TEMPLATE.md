@@ -1,6 +1,6 @@
 ## Summary
 
-<!-- Feature PRs target develop. Only a Promote to production PR targets main. -->
+<!-- Promote to production only (develop → main). Feature work commits to develop. -->
 
 -
 
