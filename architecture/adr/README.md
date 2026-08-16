@@ -2,17 +2,75 @@
 
 Accepted decisions that shape Tablio. An ADR locks a long-lived boundary so later PRs do not re-open it.
 
-Tablio writes platform ADRs **before** the first implementation when the decision is a tenancy, security, or release boundary. Implementation details stay in the API README and implementation plans.
+Tablio writes platform ADRs **before** the first implementation when the decision is a tenancy, security, or release boundary. Implementation details stay in the API README and [implementation plans](../implementation/README.md).
 
 ## Index
 
 | ADR | Title | Status |
 |-----|-------|--------|
 | [0001](0001-platform-deployment-and-tenancy-boundary.md) | Platform deployment and tenancy boundary | Accepted (2026-08-15) |
+| [0002](0002-canonical-product-domain.md) | Canonical Product domain | Accepted (2026-08-15) |
+| [0003](0003-warehouse-and-inventory.md) | Warehouse and Inventory | Accepted (2026-08-15) |
+| [0004](0004-procurement-and-goods-receiving.md) | Procurement and Goods Receiving | Proposed |
+| [0005](0005-recipes-and-production.md) | Recipes and Production | Proposed |
+| [0006](0006-pos-sales-and-sale-actions.md) | POS Sales and Sale Actions | Proposed |
+| [0007](0007-pos-modifiers.md) | POS Modifiers | Proposed |
+| [0008](0008-bundles-and-promotions.md) | Bundles and Promotions | Proposed |
+| [0009](0009-tax-model.md) | Tax Model | Proposed |
+| [0010](0010-invoices-and-fiscalization.md) | Invoices and Fiscalization | Proposed |
+| [0011](0011-payments-and-settlement.md) | Payments and Settlement | Proposed |
+| [0012](0012-pos-tickets-ordering-and-service-workflow.md) | POS Tickets, Ordering and Service Workflow | Proposed |
+| [0013](0013-tables-service-areas-and-seating.md) | Tables, Service Areas and Seating | Proposed |
+| [0014](0014-kitchen-bar-production-routing-and-kds.md) | Kitchen, Bar Production Routing and KDS | Proposed |
+| [0015](0015-reservations-waitlist-and-guest-seating.md) | Reservations, Waitlist and Guest Seating | Proposed |
+| [0016](0016-price-lists-discounts-comps-and-approval-rules.md) | Price Lists, Discounts, Comps and Approval Rules | Proposed |
+| [0017](0017-staff-identity-roles-and-operator-authorization.md) | Staff Identity, Roles and Operator Authorization | Proposed |
+| [0018](0018-shifts-cash-drawers-and-daily-closing.md) | Shifts, Cash Drawers and Daily Closing | Proposed |
+| [0019](0019-pos-devices-registration-and-configuration.md) | POS Devices, Registration and Configuration | Proposed |
+| [0020](0020-offline-pos-operation-and-synchronization.md) | Offline POS Operation and Synchronization | Proposed |
+| [0021](0021-customer-profiles-consent-and-loyalty.md) | Customer Profiles, Consent and Loyalty | Proposed |
+| [0022](0022-ordering-channels-delivery-and-external-platforms.md) | Ordering Channels, Delivery and External Platforms | Proposed |
+| [0023](0023-supplier-invoices-and-accounts-payable.md) | Supplier Invoices and Accounts Payable | Proposed |
+| [0024](0024-incoming-einvoices-and-recipient-fiscalization.md) | Incoming eInvoices and Recipient Fiscalization | Proposed |
+| [0025](0025-accounting-posting-and-export.md) | Accounting Posting and Export | Proposed |
+| [0026](0026-reporting-analytics-and-historical-snapshots.md) | Reporting, Analytics and Historical Snapshots | Proposed |
+| [0027](0027-audit-trail-data-retention-and-privacy.md) | Audit Trail, Data Retention and Privacy | Proposed |
+| [0028](0028-public-api-webhooks-and-integration-idempotency.md) | Public API, Webhooks and Integration Idempotency | Proposed |
+| [0029](0029-menu-publishing-availability-and-dayparts.md) | Menu Publishing, Availability and Dayparts | Proposed |
+| [0030](0030-gift-cards-vouchers-and-stored-value.md) | Gift Cards, Vouchers and Stored Value | Proposed |
+| [0031](0031-deposits-prepayments-and-no-show-charges.md) | Deposits, Prepayments and No-show Charges | Proposed |
+| [0032](0032-tenant-plans-entitlements-and-saas-billing.md) | Tenant Plans, Entitlements and SaaS Billing | Proposed |
+
+## ADR Roadmap
+
+Reserved numbers for planned architectural decisions. A roadmap entry is not
+an accepted decision and does not authorize implementation.
+
+`Planned` is not `Proposed`. A reserved number is not a decision. There is no
+file link until the ADR file exists. When the document is created, its row
+moves from Roadmap to Index.
+
+Roadmap titles and ordering may be refined before an ADR file exists. Any
+roadmap change is made through a normal docs PR. Once an ADR file exists, its
+number and identity are permanent. A removed planned topic leaves no tombstone
+because it was never an ADR.
+
+A roadmap topic becomes an ADR only when it requires a long-lived,
+cross-component boundary or an irreversible architectural decision.
+Feature UX and ordinary implementation details remain outside ADRs.
+
+| ADR | Planned title | Status |
+|-----|---------------|--------|
+
+No further ADR numbers are reserved.
 
 ## Template
 
-New ADRs use the next free number and this shape:
+New ADRs take the lowest available reserved number from the ADR Roadmap.
+When the document is created, its row moves from Roadmap to Index.
+`Planned` appears only in the Roadmap table, never as an Index status.
+
+New ADRs use this shape:
 
 ```markdown
 # ADR 00XX: Title
