@@ -407,3 +407,11 @@ The original Decision that this ADR owns the tax model, and that fiscalization d
 ADR 0031 freezes `ReservationFinancialClassificationSnapshot` per event. This ADR still resolves rates. There is no universal deposit VAT flag.
 
 This amendment does not change sales-tax calculation, rounding ownership, or outgoing fiscal XML.
+
+## Amendment — 2026-08-16: SaaS tax snapshot owned by ADR 0032
+
+The original Decision that this ADR owns the tax model, and that fiscalization does not calculate or mutate tax, remain in the original text.
+
+ADR 0032 freezes `SaaSTaxProfileSnapshot`. This ADR still owns tenant POS tax. There is no global SaaS `vat_rate`. `UNAVAILABLE` is not `VERIFIED`. A VAT ID or address change is prospective and does not rewrite an issued SaaS invoice.
+
+This amendment does not change sales-tax calculation, rounding ownership, or outgoing fiscal XML.

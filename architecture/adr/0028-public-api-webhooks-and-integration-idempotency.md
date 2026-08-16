@@ -792,3 +792,22 @@ reservation_financials.charge_execute
 A webhook is created only after a committed fact. PAN, CVV, a payment token, and full mandate or terms-acceptance proof stay out of the webhook.
 
 This amendment does not change installation tenancy, frozen idempotency responses, or webhook delivery semantics.
+
+## Amendment — 2026-08-16: SaaS billing API scopes owned by ADR 0032
+
+The original Decision that the public API is a versioned contract over existing domains, and that an API call does not bypass the owner ADR, remain in the original text.
+
+ADR 0032 owns SaaS plan, entitlement, and platform billing. `TenantSubscription` is not `WebhookSubscription`. This ADR adds:
+
+```text
+billing.read
+billing.subscription_manage
+billing.payment_manage
+billing.invoice_download
+billing.usage_read
+billing.credit_manage
+```
+
+A webhook is created only after a committed fact. Payment credential and full tax proof stay out of the webhook. Developer-portal product billing stays out of this ADR.
+
+This amendment does not change installation tenancy, frozen idempotency responses, or webhook delivery semantics.

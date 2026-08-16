@@ -489,3 +489,11 @@ The original Decision that the server is the only canonical authority remain in 
 ADR 0031 owns deposits, prepayments, and no-show charges. Offline POS must not set a guarantee, authorize or capture a hold, receive, apply, or refund a prepayment, or decide or charge a cancellation or no-show fee.
 
 This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.
+
+## Amendment — 2026-08-16: Offline lease carries entitlement generation
+
+The original Decision that the server is the only canonical authority remain in the original text.
+
+ADR 0032 owns SaaS entitlement. `OfflineLease` and `OfflineDataSnapshot` carry `entitlement_generation`, `subscription_state`, and `entitlement_lease_expires_at`. After reconnect the server rejects newly forbidden commands. A stale generation is not authority.
+
+This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.

@@ -754,3 +754,25 @@ reservation_financials.audit
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-16: Tenant billing permissions owned by ADR 0032
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0032 owns SaaS plan, entitlement, and platform billing. A plan entitlement is not a staff permission. Tenant billing and platform-operator billing are separate catalogs. A tenant admin cannot publish a global plan or edit `PlatformBillingEntity`.
+
+ADR 0032 adds tenant-scoped:
+
+```text
+billing.view
+billing.invoice_download
+billing.subscription_manage
+billing.payment_manage
+billing.usage_view
+billing.credit_apply
+billing.recovery_resolve
+```
+
+Platform-operator `plan_manage`, `tax_manage`, `price_manage`, and billing-entity manage stay a separate catalog owned by ADR 0032.
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

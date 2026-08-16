@@ -575,3 +575,11 @@ The original Decision that this ADR owns accounting export, and that a frozen ba
 ADR 0031 owns the prepayment ledger and fee claims. `ReservationPrepaymentLiabilitySnapshot` reconciliation is required from day one, before a prepayment policy may activate. Named sources only. The racunai adapter may stay later. When added, the adapter reads frozen events, not the cached balance. Payment `UNKNOWN` is not exportable. Chargeback after apply is `RECOVERY_ONLY`.
 
 This amendment does not change batch versus delivery, source claims, or layered provider ACK.
+
+## Amendment — 2026-08-16: Tenant export is not platform SaaS billing
+
+The original Decision that this ADR owns accounting export, and that a frozen batch is immutable, remain in the original text.
+
+ADR 0032 owns platform SaaS billing. Tenant accounting export is not platform SaaS billing. A SaaS invoice is not venue revenue. Tablio platform accounting stays a later control-plane process.
+
+This amendment does not change batch versus delivery, source claims, or layered provider ACK.
