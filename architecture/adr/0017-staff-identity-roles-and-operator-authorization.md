@@ -402,9 +402,11 @@ Do not implement shifts, device registration, or an IdP vendor from this ADR.
 ## See also
 
 - [ADR 0001: Platform deployment and tenancy boundary](0001-platform-deployment-and-tenancy-boundary.md)
+- [ADR 0003: Warehouse and Inventory](0003-warehouse-and-inventory.md)
 - [ADR 0012: POS Tickets, Ordering and Service Workflow](0012-pos-tickets-ordering-and-service-workflow.md)
 - [ADR 0015: Reservations, Waitlist and Guest Seating](0015-reservations-waitlist-and-guest-seating.md)
 - [ADR 0016: Price Lists, Discounts, Comps and Approval Rules](0016-price-lists-discounts-comps-and-approval-rules.md)
+- [Slice 1 implementation plan](../implementation/001-tenant-location-auth-context.md)
 
 ## Out of scope
 
@@ -774,5 +776,20 @@ billing.recovery_resolve
 ```
 
 Platform-operator `plan_manage`, `tax_manage`, `price_manage`, and billing-entity manage stay a separate catalog owned by ADR 0032.
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-16: Location permissions owned with ADR 0003
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0003 owns the minimal `BusinessLocation`. This ADR adds:
+
+```text
+location.view
+location.manage
+```
+
+`location.view` does not grant create, update, or deactivate. `location.manage` does not imply all locations. A covering `LocationAssignment` is still required. A deactivated location may remain visible to administration and must not be the target of a new business operation.
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

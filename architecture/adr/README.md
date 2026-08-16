@@ -2,7 +2,7 @@
 
 Accepted decisions that shape Tablio. An ADR locks a long-lived boundary so later PRs do not re-open it.
 
-Tablio writes platform ADRs **before** the first implementation when the decision is a tenancy, security, or release boundary. Implementation details stay in the API README and implementation plans.
+Tablio writes platform ADRs **before** the first implementation when the decision is a tenancy, security, or release boundary. Implementation details stay in the API README and [implementation plans](../implementation/README.md).
 
 ## Index
 
