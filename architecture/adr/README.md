@@ -38,6 +38,7 @@ Tablio writes platform ADRs **before** the first implementation when the decisio
 | [0028](0028-public-api-webhooks-and-integration-idempotency.md) | Public API, Webhooks and Integration Idempotency | Proposed |
 | [0029](0029-menu-publishing-availability-and-dayparts.md) | Menu Publishing, Availability and Dayparts | Proposed |
 | [0030](0030-gift-cards-vouchers-and-stored-value.md) | Gift Cards, Vouchers and Stored Value | Proposed |
+| [0031](0031-deposits-prepayments-and-no-show-charges.md) | Deposits, Prepayments and No-show Charges | Proposed |
 
 ## ADR Roadmap
 
@@ -59,7 +60,6 @@ Feature UX and ordinary implementation details remain outside ADRs.
 
 | ADR | Planned title | Status |
 |-----|---------------|--------|
-| 0031 | Deposits, Prepayments and No-show Charges | Planned |
 | 0032 | Tenant Plans, Entitlements and SaaS Billing | Planned |
 
 ## Template

@@ -399,3 +399,11 @@ The original Decision that this ADR owns the tax model, and that fiscalization d
 ADR 0030 freezes `voucher_tax_class` and the other classification axes. This ADR still resolves rates. A monetary card may be tax SPV or MPV. There is no generic gift-card tax flag.
 
 This amendment does not change sales-tax calculation, rounding ownership, or outgoing fiscal XML.
+
+## Amendment — 2026-08-16: Reservation financial tax class frozen by ADR 0031
+
+The original Decision that this ADR owns the tax model, and that fiscalization does not calculate or mutate tax, remain in the original text.
+
+ADR 0031 freezes `ReservationFinancialClassificationSnapshot` per event. This ADR still resolves rates. There is no universal deposit VAT flag.
+
+This amendment does not change sales-tax calculation, rounding ownership, or outgoing fiscal XML.

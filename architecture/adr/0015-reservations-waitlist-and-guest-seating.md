@@ -354,3 +354,11 @@ The original Decision that a Reservation may store `external_source` and `extern
 ADR 0022 owns channel and OTA **ordering** adapters, `ChannelOrder`, and provider inbox/outbox. The reservation external-id contract stays this ADR.
 
 This amendment does not change capacity modes, `ReservationTableAssignment`, or Seat party.
+
+## Amendment — 2026-08-16: Deposits and no-show charges owned by ADR 0031
+
+The original Decision that this ADR owns Reservation status, capacity, Seat party, and that clock expiry is overdue only, remain in the original text.
+
+ADR 0031 now owns deposits, prepayments, and fee claims. This ADR still owns status, capacity, Seat party, and `NO_SHOW`. ADR 0031 returns only `financial_requirement_satisfied`. A late payment re-checks capacity here.
+
+This amendment does not change capacity modes, `ReservationTableAssignment`, or Seat party.
