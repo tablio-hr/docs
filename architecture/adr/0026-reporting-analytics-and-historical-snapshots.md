@@ -515,3 +515,11 @@ This ADR does not define:
 - dashboard chrome
 - exact metric formula text, refresh SLA, or FX reporting-currency pair
 - POS screen layout
+
+## Amendment — 2026-08-16: Erasure covers identifying analytics artifacts
+
+The original Decision that operational models stay canonical, and that a published snapshot is not rewritten, remain in the original text.
+
+ADR 0027 owns retention and privacy execution. Erasure covers identifying report artifacts and projections. A published aggregate remains only if it is no longer personal data. If it re-identifies a small group, rebuild, restrict, or retain on a valid basis.
+
+This amendment does not change live versus projection versus snapshot, cutoff vectors, or restatement history.

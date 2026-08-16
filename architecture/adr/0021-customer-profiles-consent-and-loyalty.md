@@ -655,3 +655,11 @@ The original Decision that `CustomerProfile`, consent, and the loyalty ledger st
 ADR 0026 owns generic reporting datasets. Those datasets are aggregates. Customer PII and note content stay out. Loyalty metrics stay a later analytics source and are not authorized as v1.
 
 This amendment does not change tenant-scoped profiles, `ConsentEvent` ordering, or the loyalty ledger.
+
+## Amendment — 2026-08-16: Retention and DSAR execution owned by ADR 0027
+
+The original Decision that `CustomerProfile`, consent, and the loyalty ledger stay tenant-scoped, and that snapshots are not the live profile, remain in the original text.
+
+ADR 0027 now owns retention, legal hold, and DSAR execution. `ConsentEvent` stays this ADR. `retention_class` binds to `RetentionBinding` and `RetentionPolicy`. Merge joins the tenant-scoped alias cluster. `privacy.request_manage` still only records or forwards a request.
+
+This amendment does not change tenant-scoped profiles, `ConsentEvent` ordering, or the loyalty ledger.
