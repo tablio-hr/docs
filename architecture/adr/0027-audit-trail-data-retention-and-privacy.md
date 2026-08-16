@@ -652,3 +652,11 @@ This ADR does not define:
 - Tablio public API (ADR 0028)
 - a durable data warehouse
 - POS screen layout
+
+## Amendment — 2026-08-16: Integration audit and webhook fence owned by ADR 0028
+
+The original Decision that this ADR owns audit, retention, legal hold, and `PrivacySubjectFence`, remain in the original text.
+
+ADR 0028 owns the public API, tenant-facing webhooks, and integration idempotency. This ADR still audits the listed integration actions. Pending webhooks and idempotency responses follow fence, hold, and retention. Destroying a full idempotency response leaves a tombstone, not reconstructed PII.
+
+This amendment does not change append-only audit, multi-purpose `RetentionBinding`, or `PrivacySubjectFence` write checks.

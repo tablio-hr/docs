@@ -551,3 +551,11 @@ The original Decision that this ADR owns accounting export, and that a frozen ba
 ADR 0027 owns retention and privacy execution. An accounting batch is a legal or export record that erasure does not automatically delete.
 
 This amendment does not change batch versus delivery, source claims, or layered provider ACK.
+
+## Amendment — 2026-08-16: racunai.hr is the first adapter, not the only one
+
+The original Decision that this ADR owns accounting export, and that a frozen batch is immutable, remain in the original text.
+
+ADR 0028 owns reusable integration primitives only. This ADR still owns provider selection, `AccountingConnection`, adapter capability profile, payload translation, and delivery status. `provider` / `provider_code` is extensible with `adapter_version` and `capability_profile`. racunai.hr is the first adapter, not the only one. An adapter must not mutate the frozen batch. One provider ACK cannot attach to another provider’s delivery.
+
+This amendment does not change batch versus delivery, source claims, or layered provider ACK.

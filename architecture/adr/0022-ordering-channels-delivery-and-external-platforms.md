@@ -633,3 +633,11 @@ The original Decision that `ChannelOrder` is the canonical received-order record
 ADR 0026 may read canonical channel and delivery facts. Raw provider payload stays out of generic analytics datasets.
 
 This amendment does not change `ChannelOrder` first, the order fence, or provider-ack rules.
+
+## Amendment — 2026-08-16: Tenant-facing API and webhooks owned by ADR 0028
+
+The original Decision that `ChannelOrder` is the canonical received-order record, and that an external payload is not the Ticket, remain in the original text.
+
+ADR 0028 now owns the tenant-facing public API and outbound webhooks. This ADR still owns the provider inbound inbox and the provider outbound outbox.
+
+This amendment does not change `ChannelOrder` first, the order fence, or provider-ack rules.
