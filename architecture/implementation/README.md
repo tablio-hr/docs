@@ -5,7 +5,7 @@ Locked vertical-slice plans that authorize API work. They are not ADRs.
 An ADR locks a long-lived boundary. An implementation plan records the first
 code path that respects those boundaries: models, constraints, commands, and
 acceptance tests. API PRs start only after the plan that authorizes them is
-merged.
+merged. PR base, promote path, and runner labels: [AGENTS.md](../../AGENTS.md).
 
 | Plan | Title | Status |
 |------|-------|--------|
