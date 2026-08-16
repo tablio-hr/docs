@@ -753,3 +753,22 @@ The original Decision that the public API is a versioned contract over existing 
 ADR 0029 owns menu publishing. The `PUBLIC_API` channel reads the published release, not authoring tables.
 
 This amendment does not change installation tenancy, frozen idempotency responses, or webhook delivery semantics.
+
+## Amendment — 2026-08-16: Stored-value API scopes owned by ADR 0030
+
+The original Decision that the public API is a versioned contract over existing domains, and that an API call does not bypass the owner ADR, remain in the original text.
+
+ADR 0030 owns gift cards, vouchers, and stored value. This ADR adds:
+
+```text
+stored_value.read
+stored_value.issue
+stored_value.activate
+stored_value.redeem
+stored_value.refund
+stored_value.admin
+```
+
+A webhook is created only after a committed ledger event. The full secret is never in a webhook.
+
+This amendment does not change installation tenancy, frozen idempotency responses, or webhook delivery semantics.

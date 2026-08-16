@@ -330,3 +330,11 @@ The original Decision that Product is not a Sale Action, and that POS button chr
 ADR 0029 owns the published menu. A menu item targets `sale_action_id`, not an arbitrary Product. POS layout chrome stays a later decision.
 
 This amendment does not change Sale Action types, tax rate at post, one location/storage/currency, or “only `POSTED` creates `SALE`”.
+
+## Amendment — 2026-08-16: Selling a stored-value instrument may use NON_STOCK
+
+The original Decision that Product is not a Sale Action, and that only `POSTED` creates `SALE`, remain in the original text.
+
+ADR 0030 owns gift cards, vouchers, and stored value. Selling an instrument may use a `NON_STOCK` Sale Action. That sale is not food or drink `SALE` revenue.
+
+This amendment does not change Sale Action types, tax rate at post, one location/storage/currency, or “only `POSTED` creates `SALE`”.

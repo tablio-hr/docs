@@ -668,3 +668,11 @@ The original Decision that this ADR owns audit, retention, legal hold, and `Priv
 ADR 0029 owns menu publishing. A withdrawn release is retained for Ticket proof, refund, and delayed mapping. The public menu payload stays allow-listed.
 
 This amendment does not change append-only audit, multi-purpose `RetentionBinding`, or `PrivacySubjectFence` write checks.
+
+## Amendment — 2026-08-16: Profile erasure does not delete the stored-value ledger
+
+The original Decision that this ADR owns audit, retention, legal hold, and `PrivacySubjectFence`, remain in the original text.
+
+ADR 0030 owns gift cards, vouchers, and stored value. Erasure of a `CustomerProfile` does not delete the legal ledger or change the balance. The instrument secret is a credential.
+
+This amendment does not change append-only audit, multi-purpose `RetentionBinding`, or `PrivacySubjectFence` write checks.

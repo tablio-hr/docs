@@ -391,3 +391,11 @@ The original Decision that this ADR owns the tax model, and that fiscalization d
 ADR 0025 exports stored tax snapshots on accounting journal lines. This ADR still owns the tax model and recoverability math. Export must not recalculate tax.
 
 This amendment does not change sales-tax calculation, rounding ownership, or outgoing fiscal XML.
+
+## Amendment — 2026-08-16: Stored-value tax class frozen by ADR 0030
+
+The original Decision that this ADR owns the tax model, and that fiscalization does not calculate or mutate tax, remain in the original text.
+
+ADR 0030 freezes `voucher_tax_class` and the other classification axes. This ADR still resolves rates. A monetary card may be tax SPV or MPV. There is no generic gift-card tax flag.
+
+This amendment does not change sales-tax calculation, rounding ownership, or outgoing fiscal XML.

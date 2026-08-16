@@ -361,3 +361,11 @@ The original Decision that a TicketLine snapshot is the frozen financial result,
 ADR 0029 owns the published menu. A release display price is not charge authority. At accept the backend re-resolves this ADR. A mismatch with `displayed_price_reference` is `PRICE_CHANGED`. Daypart is not a PriceList.
 
 This amendment does not change PriceList selection, Reprice, or atomic approval consume.
+
+## Amendment — 2026-08-16: Voucher pricing effect stays this ADR
+
+The original Decision that a TicketLine snapshot is the frozen financial result, and that a line total cannot go negative, remain in the original text.
+
+ADR 0030 owns whether a discount or entitlement instrument may be used and atomically consumes a use. The pricing effect stays this ADR. Consume and apply happen in one transaction.
+
+This amendment does not change PriceList selection, Reprice, or atomic approval consume.

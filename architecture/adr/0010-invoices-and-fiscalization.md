@@ -427,3 +427,11 @@ The original Decision that this ADR governs outgoing sales Invoices only, and th
 ADR 0025 may export an `ISSUED` Invoice as an accounting source. Issued or fiscalized is not accounting exported. racunai.hr must not re-issue the Tablio legal invoice. A technical provider ACK is not `BOOKED_CONFIRMED`.
 
 This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.
+
+## Amendment — 2026-08-16: Stored-value issue and redemption facts from ADR 0030
+
+The original Decision that this ADR governs outgoing sales Invoices only, and that external failure never mutates or renumbers an Invoice, remain in the original text.
+
+ADR 0030 hands issue and redemption facts, classification snapshot, consideration, and issuer legal entity. This ADR still decides the fiscal document.
+
+This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.
