@@ -353,3 +353,11 @@ The original Decision that a TicketLine snapshot is the frozen financial result,
 ADR 0022 owns external displayed price, platform discount, merchant-funded discount, subsidy, fees, and `price_mismatch_policy`. Those amounts stay un-netted. The customer-total equation must reconcile exactly. Commission is not a TicketLine discount or Comp. This ADR still owns the internal list and the final TicketLine snapshot.
 
 This amendment does not change PriceList selection, Reprice, or atomic approval consume.
+
+## Amendment — 2026-08-16: Menu display price is not charge authority
+
+The original Decision that a TicketLine snapshot is the frozen financial result, and that a line total cannot go negative, remain in the original text.
+
+ADR 0029 owns the published menu. A release display price is not charge authority. At accept the backend re-resolves this ADR. A mismatch with `displayed_price_reference` is `PRICE_CHANGED`. Daypart is not a PriceList.
+
+This amendment does not change PriceList selection, Reprice, or atomic approval consume.

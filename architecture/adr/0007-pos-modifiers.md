@@ -321,3 +321,11 @@ This ADR does not define:
 - modifier availability by location or time
 - production substitutions (ADR 0005)
 - allergen derivation from selected modifiers
+
+## Amendment — 2026-08-16: Menu publish validates the modifier graph
+
+The original Decision that modifier groups snapshot on `SaleActionVersion` remain in the original text.
+
+ADR 0029 owns menu publish. Activate is blocked when the modifier graph has a cycle or a required option has no valid action or price.
+
+This amendment does not change modifier snapshots on the Sale Action version.

@@ -504,3 +504,11 @@ When declared content is present:
 - a later historical sale line must freeze the ratio that was used
 
 `divisible` and declared content are Product-level hooks. Exact column names are an implementation concern. This amendment does not introduce a second vodka Product, lot tracking, or density conversion.
+
+## Amendment — 2026-08-16: Product ACTIVE is not on a menu
+
+The original Decision that Product is the warehouse or service identity, and that local visibility is not a second Product, remain in the original text.
+
+ADR 0029 owns menu authoring and publishing. `Product ACTIVE` does not mean the product is on a published menu. Local visibility is this later ADR.
+
+This amendment does not change Product identity, capabilities, or historical snapshots.
