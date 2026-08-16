@@ -449,3 +449,11 @@ The original Decision that the server is the only canonical authority remain in 
 ADR 0026 owns analytics projections and snapshots. A late server accept of an offline command is a restatement source. It must not mutate a `PUBLISHED` `AS_RECORDED` snapshot. A POS device must not publish or restate analytics snapshots.
 
 This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.
+
+## Amendment — 2026-08-16: Offline recovery must honor privacy fence and legal hold
+
+The original Decision that the server is the only canonical authority remain in the original text.
+
+ADR 0027 owns audit, retention, legal hold, and privacy execution. Emergency override and offline recovery must not bypass tenant isolation, a legal hold or retention stop, or `PrivacySubjectFence`. A late offline event after `ERASED` is quarantined and must not rematerialize PII.
+
+This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.

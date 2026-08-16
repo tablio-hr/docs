@@ -543,3 +543,11 @@ The original Decision that this ADR owns accounting export, and that a dashboard
 ADR 0026 now owns reporting, projections, and historical snapshots. Accountant packs stay this ADR. Export status may appear in analytics as status only. `BOOKED_CONFIRMED` or a technical ACK must not increment sales.
 
 This amendment does not change batch versus delivery, source claims, or layered provider ACK.
+
+## Amendment — 2026-08-16: Accounting batch is not auto-deleted by erasure
+
+The original Decision that this ADR owns accounting export, and that a frozen batch is immutable, remain in the original text.
+
+ADR 0027 owns retention and privacy execution. An accounting batch is a legal or export record that erasure does not automatically delete.
+
+This amendment does not change batch versus delivery, source claims, or layered provider ACK.

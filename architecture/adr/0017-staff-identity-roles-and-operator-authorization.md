@@ -635,3 +635,28 @@ analytics.reconciliation_resolve
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-16: Audit and privacy permissions owned by ADR 0027
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0027 owns audit, retention, legal hold, and privacy execution. A `STAFF` audit actor still requires a membership episode. `SYSTEM` uses a named service identity, not a fake staff actor. `audit.view` does not grant `audit.export`. The same actor must not approve and execute sensitive erasure. Legal-hold maker and approver must differ. `privacy.request_manage` already exists from ADR 0021 as record-or-forward; this ADR keeps that name.
+
+ADR 0027 adds:
+
+```text
+audit.view
+audit.export
+audit.verify_integrity
+privacy.request_manage
+privacy.identity_verify
+privacy.export
+privacy.erase_execute
+privacy.restriction_manage
+retention.policy_manage
+retention.run
+legal_hold.manage
+legal_hold.approve
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
