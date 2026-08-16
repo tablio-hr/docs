@@ -421,3 +421,11 @@ The original Decision that v1 promotions are automatic, line-level, and do not s
 ADR 0029 owns menu publish. Activate is blocked when the bundle graph has a cycle.
 
 This amendment does not change bundle structure, `BUY_X_GET_Y`, tax allocation, or “stock from delivered quantity”.
+
+## Amendment — 2026-08-16: Public campaign code is not a stored-value instrument
+
+The original Decision that v1 promotions are automatic, line-level, and do not stack with each other remain in the original text.
+
+ADR 0030 owns issued instruments. A public campaign code such as `LJETO10` stays this ADR and ADR 0016. It is not a 0030 instrument.
+
+This amendment does not change bundle structure, `BUY_X_GET_Y`, tax allocation, or “stock from delivered quantity”.

@@ -602,3 +602,11 @@ This ADR does not define:
 - gift cards (ADR 0030)
 - a concrete provider menu wire format
 - POS screen chrome
+
+## Amendment — 2026-08-16: Gift-card sale item targets sale_action_id
+
+The original Decision that a menu item targets `sale_action_id`, and that a release display price is not charge authority, remain in the original text.
+
+ADR 0030 owns gift cards, vouchers, and stored value. A gift-card sale item targets `sale_action_id`. It is not food or drink revenue.
+
+This amendment does not change release immutability, hard veto versus operational precedence, or `PRICE_CHANGED`.

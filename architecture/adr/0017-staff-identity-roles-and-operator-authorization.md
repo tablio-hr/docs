@@ -704,3 +704,28 @@ menu.recovery_resolve
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-16: Stored-value permissions owned by ADR 0030
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0030 owns gift cards, vouchers, and stored value. Maker-checker is required at least for: manual credit or debit above threshold; high-balance reissue; shortening expiry; widening the network; changing regulatory classification; breakage resolution; `UNKNOWN` recovery that could create value. `emergency.override` must not make a negative balance, bypass tenant or issuer, redeem another party’s instrument, skip the ledger, turn stored value into cash, or widen the acceptance network.
+
+ADR 0030 adds:
+
+```text
+stored_value.view
+stored_value.issue
+stored_value.activate
+stored_value.redeem
+stored_value.refund
+stored_value.suspend
+stored_value.reissue
+stored_value.adjust
+stored_value.program_manage
+stored_value.expiry_manage
+stored_value.recovery_resolve
+stored_value.audit
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

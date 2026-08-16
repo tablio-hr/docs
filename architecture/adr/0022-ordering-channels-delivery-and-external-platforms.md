@@ -649,3 +649,11 @@ The original Decision that `ChannelOrder` is the canonical received-order record
 ADR 0029 owns `MenuDistribution` and `MenuAvailabilityDistribution`. Delayed orders still use `external_menu_revision`. Local `ACTIVE` is not provider ACK. An availability ACK is not a menu ACK.
 
 This amendment does not change `ChannelOrder` first, the order fence, or provider-ack rules.
+
+## Amendment — 2026-08-16: ChannelOrder code is not stored-value redemption
+
+The original Decision that `ChannelOrder` is the canonical received-order record, and that an external payload is not the Ticket, remain in the original text.
+
+ADR 0030 owns stored-value and unique-voucher redemption. A code on a `ChannelOrder` is not redemption. Server-side 0030 authorization is required.
+
+This amendment does not change `ChannelOrder` first, the order fence, or provider-ack rules.

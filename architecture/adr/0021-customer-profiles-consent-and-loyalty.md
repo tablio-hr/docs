@@ -671,3 +671,11 @@ The original Decision that `CustomerProfile`, consent, and the loyalty ledger st
 ADR 0028 owns the public API. `customers.write` still goes through this ADR’s commands. The API must not mint marketing consent or bypass `PrivacySubjectFence`.
 
 This amendment does not change tenant-scoped profiles, `ConsentEvent` ordering, or the loyalty ledger.
+
+## Amendment — 2026-08-16: Gift cards and stored value owned by ADR 0030
+
+The original Decision that `CustomerProfile`, consent, and the loyalty ledger stay tenant-scoped, and that snapshots are not the live profile, remain in the original text.
+
+ADR 0030 now owns gift cards and stored value. Loyalty remains not cash or a tender.
+
+This amendment does not change tenant-scoped profiles, `ConsentEvent` ordering, or the loyalty ledger.

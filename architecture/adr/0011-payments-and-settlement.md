@@ -415,3 +415,11 @@ The original Decision that Invoice, Payment, allocation, and Settlement are sepa
 ADR 0025 may export a `CAPTURED` customer Payment as an accounting source. Fees and Settlement still do not rewrite the invoice. Payment `UNKNOWN` is not exportable. `BOOKED_CONFIRMED` does not mark the customer paid.
 
 This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.
+
+## Amendment — 2026-08-16: GIFT_CARD Payment sourced from captured stored-value authorization
+
+The original Decision that Invoice, Payment, allocation, and Settlement are separate facts remain in the original text.
+
+ADR 0030 owns the stored-value ledger. A captured `StoredValueAuthorization` becomes a `GIFT_CARD` Payment. A discount voucher is not a Payment method.
+
+This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.
