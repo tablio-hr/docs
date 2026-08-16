@@ -297,3 +297,11 @@ The original Decision that a sent ProductionInstruction is immutable, and that c
 ADR 0022 owns external cancel after send. The instruction is not deleted. Production status is not a channel status. When the connection uses `REQUIRE_PROVIDER_ACK_BEFORE_PRODUCTION`, kitchen send is blocked until provider acknowledgement.
 
 This amendment does not change destination resolution, fail-closed routing, or instruction immutability.
+
+## Amendment — 2026-08-16: Menu activate requires a valid production route
+
+The original Decision that a missing route is fail-closed, and that equal-specificity routes are rejected at publish, remain in the original text.
+
+ADR 0029 owns menu publish. An item that needs a production route cannot activate if the route is invalid.
+
+This amendment does not change destination resolution, fail-closed routing, or instruction immutability.

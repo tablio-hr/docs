@@ -641,3 +641,11 @@ The original Decision that `ChannelOrder` is the canonical received-order record
 ADR 0028 now owns the tenant-facing public API and outbound webhooks. This ADR still owns the provider inbound inbox and the provider outbound outbox.
 
 This amendment does not change `ChannelOrder` first, the order fence, or provider-ack rules.
+
+## Amendment — 2026-08-16: Menu distribution owned by ADR 0029
+
+The original Decision that `ChannelOrder` is the canonical received-order record, and that an external payload is not the Ticket, remain in the original text.
+
+ADR 0029 owns `MenuDistribution` and `MenuAvailabilityDistribution`. Delayed orders still use `external_menu_revision`. Local `ACTIVE` is not provider ACK. An availability ACK is not a menu ACK.
+
+This amendment does not change `ChannelOrder` first, the order fence, or provider-ack rules.

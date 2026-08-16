@@ -465,3 +465,11 @@ The original Decision that the server is the only canonical authority remain in 
 ADR 0028 owns the public API and tenant-facing webhooks. A POS device is not a public-API installation and not a tenant webhook subscriber. Emergency override and offline recovery must not bypass the installation tenant or `PrivacySubjectFence`.
 
 This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.
+
+## Amendment — 2026-08-16: Offline snapshot references the published menu release
+
+The original Decision that the server is the only canonical authority remain in the original text.
+
+ADR 0029 owns menu publishing. `OfflineDataSnapshot` references `release_id`, `release_payload_hash`, and `availability_generation`. The device does not compile a menu, invent price or availability, or fetch an authoring draft.
+
+This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.

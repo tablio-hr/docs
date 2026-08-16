@@ -322,3 +322,11 @@ Refreshing open unsent lines requires an explicit Reprice ticket.
 A promotional or complimentary zero remains a stocked POS line when the Sale Action has a stock effect. That zero must come from a published list, an ADR 0008 promotion, or an ADR 0016 Comp — not from a missing price.
 
 This amendment does not change Sale Action types, tax rate at post, one location/storage/currency, or “only `POSTED` creates `SALE`”.
+
+## Amendment — 2026-08-16: Published menu item targets sale_action_id
+
+The original Decision that Product is not a Sale Action, and that POS button chrome is not a Sale Action, remain in the original text.
+
+ADR 0029 owns the published menu. A menu item targets `sale_action_id`, not an arbitrary Product. POS layout chrome stays a later decision.
+
+This amendment does not change Sale Action types, tax rate at post, one location/storage/currency, or “only `POSTED` creates `SALE`”.

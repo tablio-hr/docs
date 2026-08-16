@@ -512,3 +512,11 @@ The original Decision that a `CLOSED` BusinessDay snapshot is immutable, and tha
 ADR 0026 owns `AnalyticsSnapshot`. That object is not this ADR’s day-close snapshot. Location reports use the timezone and `BusinessDay` bounds snapshotted on open. Late adjustments feed an analytics restatement and do not mutate `AS_RECORDED`. A cash summary must not double-count money already represented by Payment facts.
 
 This amendment does not change StaffShift, drawer/wallet close, two-sided `CashTransfer`, or the persistent `SAFE` ledger.
+
+## Amendment — 2026-08-16: Day and shift close may expire menu overrides
+
+The original Decision that StaffShift, drawer session, `SAFE`, and `BusinessDay` stay separate remain in the original text.
+
+ADR 0029 owns menu availability overrides. Day close and shift close may expire matching overrides (`AT_BUSINESS_DAY_CLOSE` / `AT_SHIFT_CLOSE`).
+
+This amendment does not change StaffShift, drawer/wallet close, two-sided `CashTransfer`, or the persistent `SAFE` ledger.

@@ -660,3 +660,11 @@ The original Decision that this ADR owns audit, retention, legal hold, and `Priv
 ADR 0028 owns the public API, tenant-facing webhooks, and integration idempotency. This ADR still audits the listed integration actions. Pending webhooks and idempotency responses follow fence, hold, and retention. Destroying a full idempotency response leaves a tombstone, not reconstructed PII.
 
 This amendment does not change append-only audit, multi-purpose `RetentionBinding`, or `PrivacySubjectFence` write checks.
+
+## Amendment — 2026-08-16: Withdrawn menu release is retained
+
+The original Decision that this ADR owns audit, retention, legal hold, and `PrivacySubjectFence`, remain in the original text.
+
+ADR 0029 owns menu publishing. A withdrawn release is retained for Ticket proof, refund, and delayed mapping. The public menu payload stays allow-listed.
+
+This amendment does not change append-only audit, multi-purpose `RetentionBinding`, or `PrivacySubjectFence` write checks.

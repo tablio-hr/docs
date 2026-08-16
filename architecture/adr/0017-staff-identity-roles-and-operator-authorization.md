@@ -681,3 +681,26 @@ integrations.recovery_resolve
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-16: Menu permissions owned by ADR 0029
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0029 owns menu authoring, publishing, availability, and dayparts. The same actor must not alone publish a sensitive degradation that drops a required modifier or changes sale availability across a large set of locations. `UNTIL_EXPLICIT_CLEAR` needs a dedicated permission or confirmation.
+
+ADR 0029 adds:
+
+```text
+menu.view
+menu.author
+menu.validate
+menu.publish
+menu.schedule
+menu.withdraw
+menu.availability_manage
+menu.daypart_manage
+menu.distribution_manage
+menu.recovery_resolve
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
