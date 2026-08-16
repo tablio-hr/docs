@@ -684,3 +684,11 @@ The original Decision that this ADR owns audit, retention, legal hold, and `Priv
 ADR 0031 owns deposits, prepayments, and fee claims. Erasure of a `CustomerProfile` does not delete Payment, prepayment, charge-claim, or terms-acceptance proof, does not start a refund, and does not revive a spent prepayment. Payment credential and mandate are credentials.
 
 This amendment does not change append-only audit, multi-purpose `RetentionBinding`, or `PrivacySubjectFence` write checks.
+
+## Amendment — 2026-08-16: SaaS termination starts TenantDataDisposition
+
+The original Decision that this ADR owns audit, retention, legal hold, and `PrivacySubjectFence`, remain in the original text.
+
+ADR 0032 starts `TenantDataDisposition` on subscription termination. Erasure does not delete SaaS invoices, payment proof, or debt. Tablio remains a separate controller for SaaS billing.
+
+This amendment does not change append-only audit, multi-purpose `RetentionBinding`, or `PrivacySubjectFence` write checks.

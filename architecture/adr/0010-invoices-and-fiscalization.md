@@ -443,3 +443,11 @@ The original Decision that this ADR governs outgoing sales Invoices only, and th
 ADR 0031 hands receive, apply, refund, and reclassify facts plus `PrepaymentDocumentLink`. This ADR still decides whether to issue an advance or final document. Recurring invoices stay out of scope.
 
 This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.
+
+## Amendment — 2026-08-16: SaaSInvoice is not this ADR’s Invoice
+
+The original Decision that this ADR governs outgoing sales Invoices only, and that external failure never mutates or renumbers an Invoice, remain in the original text.
+
+ADR 0032 owns platform SaaS invoices. `SaaSInvoice` is not this ADR’s Invoice. It does not use the tenant fiscal sequence, BusinessDay, or Ticket. After a legally valid `ISSUED` SaaS document, correction is a credit or debit note, not an in-place void.
+
+This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.

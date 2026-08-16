@@ -433,3 +433,11 @@ ADR 0020 owns `OfflineLease`, the signed command log, and `SyncSession`. At most
 Unknown commands from a `COMPROMISED` credential generation go to `SECURITY_QUARANTINE`. Already `ACCEPTED` commands stay valid. `REASSIGNING` still requires no open offline queue.
 
 This amendment does not change enrollment proof-of-possession, `EffectiveDeviceConfig`, or capability ceiling.
+
+## Amendment — 2026-08-16: Device ceiling cannot exceed ADR 0032 entitlement
+
+The original Decision that one `ACTIVE` device belongs to one tenant and one location, and that a device override must not raise the capability ceiling, remain in the original text.
+
+ADR 0032 owns the tenant plan ceiling. Over-limit blocks new registration and reactivation. This ADR must not auto-reassign or randomly deactivate a device. The device ceiling cannot rise above the current `EffectiveEntitlementSnapshot`.
+
+This amendment does not change enrollment proof-of-possession, `EffectiveDeviceConfig`, or capability ceiling.
