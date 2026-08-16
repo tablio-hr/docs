@@ -457,3 +457,11 @@ The original Decision that the server is the only canonical authority remain in 
 ADR 0027 owns audit, retention, legal hold, and privacy execution. Emergency override and offline recovery must not bypass tenant isolation, a legal hold or retention stop, or `PrivacySubjectFence`. A late offline event after `ERASED` is quarantined and must not rematerialize PII.
 
 This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.
+
+## Amendment — 2026-08-16: POS is not a public-API installation
+
+The original Decision that the server is the only canonical authority remain in the original text.
+
+ADR 0028 owns the public API and tenant-facing webhooks. A POS device is not a public-API installation and not a tenant webhook subscriber. Emergency override and offline recovery must not bypass the installation tenant or `PrivacySubjectFence`.
+
+This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.

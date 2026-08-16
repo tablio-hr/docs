@@ -660,3 +660,24 @@ legal_hold.approve
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-16: Integration permissions owned by ADR 0028
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0028 owns the public API, tenant-facing webhooks, and integration idempotency. `integrations.view` does not grant credentials or raw webhook secrets. The same actor must not both widen a sensitive application’s scope and activate that change above the defined risk.
+
+ADR 0028 adds:
+
+```text
+integrations.view
+integrations.application_manage
+integrations.install
+integrations.scope_manage
+integrations.credentials_rotate
+integrations.webhooks_manage
+integrations.webhooks_replay
+integrations.recovery_resolve
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

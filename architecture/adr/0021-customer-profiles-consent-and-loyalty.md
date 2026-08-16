@@ -663,3 +663,11 @@ The original Decision that `CustomerProfile`, consent, and the loyalty ledger st
 ADR 0027 now owns retention, legal hold, and DSAR execution. `ConsentEvent` stays this ADR. `retention_class` binds to `RetentionBinding` and `RetentionPolicy`. Merge joins the tenant-scoped alias cluster. `privacy.request_manage` still only records or forwards a request.
 
 This amendment does not change tenant-scoped profiles, `ConsentEvent` ordering, or the loyalty ledger.
+
+## Amendment — 2026-08-16: Public API customer writes stay on ADR 0021 commands
+
+The original Decision that `CustomerProfile`, consent, and the loyalty ledger stay tenant-scoped, and that snapshots are not the live profile, remain in the original text.
+
+ADR 0028 owns the public API. `customers.write` still goes through this ADR’s commands. The API must not mint marketing consent or bypass `PrivacySubjectFence`.
+
+This amendment does not change tenant-scoped profiles, `ConsentEvent` ordering, or the loyalty ledger.

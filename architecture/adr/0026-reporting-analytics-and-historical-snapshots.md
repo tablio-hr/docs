@@ -523,3 +523,11 @@ The original Decision that operational models stay canonical, and that a publish
 ADR 0027 owns retention and privacy execution. Erasure covers identifying report artifacts and projections. A published aggregate remains only if it is no longer personal data. If it re-identifies a small group, rebuild, restrict, or retain on a valid basis.
 
 This amendment does not change live versus projection versus snapshot, cutoff vectors, or restatement history.
+
+## Amendment — 2026-08-16: Public API report reads stay on ADR 0026 authorization
+
+The original Decision that operational models stay canonical, and that a published snapshot is not rewritten, remain in the original text.
+
+ADR 0028 owns the public API. `reports.read` re-checks current authorization from this ADR. The public API is not a warehouse dump.
+
+This amendment does not change live versus projection versus snapshot, cutoff vectors, or restatement history.

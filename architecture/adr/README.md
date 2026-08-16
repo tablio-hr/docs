@@ -35,6 +35,7 @@ Tablio writes platform ADRs **before** the first implementation when the decisio
 | [0025](0025-accounting-posting-and-export.md) | Accounting Posting and Export | Proposed |
 | [0026](0026-reporting-analytics-and-historical-snapshots.md) | Reporting, Analytics and Historical Snapshots | Proposed |
 | [0027](0027-audit-trail-data-retention-and-privacy.md) | Audit Trail, Data Retention and Privacy | Proposed |
+| [0028](0028-public-api-webhooks-and-integration-idempotency.md) | Public API, Webhooks and Integration Idempotency | Proposed |
 
 ## ADR Roadmap
 
@@ -56,7 +57,6 @@ Feature UX and ordinary implementation details remain outside ADRs.
 
 | ADR | Planned title | Status |
 |-----|---------------|--------|
-| 0028 | Public API, Webhooks and Integration Idempotency | Planned |
 | 0029 | Menu Publishing, Availability and Dayparts | Planned |
 | 0030 | Gift Cards, Vouchers and Stored Value | Planned |
 | 0031 | Deposits, Prepayments and No-show Charges | Planned |
