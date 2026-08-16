@@ -660,3 +660,11 @@ This ADR does not define:
 - deposits (ADR 0031)
 - SaaS billing (ADR 0032)
 - POS screen layout
+
+## Amendment — 2026-08-16: Prepayment is not stored value
+
+The original Decision that monetary value lives on an immutable stored-value ledger, and that a gift card is not a customer wallet, remain in the original text.
+
+ADR 0031 now owns deposits, prepayments, and no-show charges. A reservation prepayment is not stored value. Surplus becomes a gift card only with explicit consent and a new instrument from this ADR.
+
+This amendment does not change orthogonal classification, ledger versus reservation, or v1 same-entity acceptance.

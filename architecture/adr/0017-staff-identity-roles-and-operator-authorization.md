@@ -729,3 +729,28 @@ stored_value.audit
 ```
 
 This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.
+
+## Amendment — 2026-08-16: Reservation-financial permissions owned by ADR 0031
+
+The original Decision that the backend authorizes by catalog permission, and that tenants cannot invent permission names, remain in the original text.
+
+ADR 0031 owns deposits, prepayments, and no-show charges. Maker-checker is required at least for: a charge above the defined threshold; a manual increase of the calculated amount; a prepayment-balance adjustment; a refund to another tender; a waiver after a charge already started; `UNKNOWN` recovery that could create a new charge; a policy change that reduces rights of already-confirmed guests.
+
+ADR 0031 adds:
+
+```text
+reservation_financials.view
+reservation_financials.policy_manage
+reservation_financials.collect
+reservation_financials.apply
+reservation_financials.refund
+reservation_financials.waive
+reservation_financials.charge_evaluate
+reservation_financials.charge_approve
+reservation_financials.charge_execute
+reservation_financials.adjust
+reservation_financials.recovery_resolve
+reservation_financials.audit
+```
+
+This amendment does not change membership uniqueness, RoleVersion, maker-checker, or online emergency override.

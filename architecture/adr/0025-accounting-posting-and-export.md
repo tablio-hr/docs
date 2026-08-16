@@ -567,3 +567,11 @@ The original Decision that this ADR owns accounting export, and that a frozen ba
 ADR 0030 owns the stored-value ledger. `StoredValueLiabilitySnapshot` reconciliation is required from day one, before program activate. The racunai adapter may stay later. When added, the adapter reads frozen ledger events, not the cached balance. `BREAKAGE_RECOGNITION` is accounting-only and must not reduce ledger balance a second time.
 
 This amendment does not change batch versus delivery, source claims, or layered provider ACK.
+
+## Amendment — 2026-08-16: Reservation prepayment liability snapshot required from day one
+
+The original Decision that this ADR owns accounting export, and that a frozen batch is immutable, remain in the original text.
+
+ADR 0031 owns the prepayment ledger and fee claims. `ReservationPrepaymentLiabilitySnapshot` reconciliation is required from day one, before a prepayment policy may activate. Named sources only. The racunai adapter may stay later. When added, the adapter reads frozen events, not the cached balance. Payment `UNKNOWN` is not exportable. Chargeback after apply is `RECOVERY_ONLY`.
+
+This amendment does not change batch versus delivery, source claims, or layered provider ACK.

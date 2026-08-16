@@ -481,3 +481,11 @@ The original Decision that the server is the only canonical authority remain in 
 ADR 0030 owns gift cards, vouchers, and stored value. Offline POS must not activate, reload, reissue, or redeem stored value or a unique voucher. It may show stored value as temporarily unavailable and, after reconnect, start a new server authorization with user confirmation.
 
 This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.
+
+## Amendment — 2026-08-16: Offline must not collect or charge a deposit
+
+The original Decision that the server is the only canonical authority remain in the original text.
+
+ADR 0031 owns deposits, prepayments, and no-show charges. Offline POS must not set a guarantee, authorize or capture a hold, receive, apply, or refund a prepayment, or decide or charge a cancellation or no-show fee.
+
+This amendment does not change `OfflineLease`, fencing, `SyncSession`, or cash-versus-fiscal rules.

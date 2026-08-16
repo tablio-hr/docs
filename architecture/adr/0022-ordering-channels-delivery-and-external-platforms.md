@@ -657,3 +657,11 @@ The original Decision that `ChannelOrder` is the canonical received-order record
 ADR 0030 owns stored-value and unique-voucher redemption. A code on a `ChannelOrder` is not redemption. Server-side 0030 authorization is required.
 
 This amendment does not change `ChannelOrder` first, the order fence, or provider-ack rules.
+
+## Amendment — 2026-08-16: Provider deposit claim is not local RECEIVED
+
+The original Decision that `ChannelOrder` is the canonical received-order record, and that an external payload is not the Ticket, remain in the original text.
+
+ADR 0031 owns reservation financial claims. Provider `prepaid`, `deposit_collected`, or `card_guaranteed` is an `ExternalReservationFinancialClaim`. `funds_control_model` is required. `PROVIDER_MERCHANT_OF_RECORD` is not local `RECEIVED`. Delayed events use original event time, not webhook receive time.
+
+This amendment does not change `ChannelOrder` first, the order fence, or provider-ack rules.

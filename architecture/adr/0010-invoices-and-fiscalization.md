@@ -435,3 +435,11 @@ The original Decision that this ADR governs outgoing sales Invoices only, and th
 ADR 0030 hands issue and redemption facts, classification snapshot, consideration, and issuer legal entity. This ADR still decides the fiscal document.
 
 This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.
+
+## Amendment — 2026-08-16: Prepayment document facts from ADR 0031
+
+The original Decision that this ADR governs outgoing sales Invoices only, and that external failure never mutates or renumbers an Invoice, remain in the original text.
+
+ADR 0031 hands receive, apply, refund, and reclassify facts plus `PrepaymentDocumentLink`. This ADR still decides whether to issue an advance or final document. Recurring invoices stay out of scope.
+
+This amendment does not change B2C/B2B routing, sequence policy, or outbox atomicity.

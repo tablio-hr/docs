@@ -772,3 +772,23 @@ stored_value.admin
 A webhook is created only after a committed ledger event. The full secret is never in a webhook.
 
 This amendment does not change installation tenancy, frozen idempotency responses, or webhook delivery semantics.
+
+## Amendment — 2026-08-16: Reservation-financial API scopes owned by ADR 0031
+
+The original Decision that the public API is a versioned contract over existing domains, and that an API call does not bypass the owner ADR, remain in the original text.
+
+ADR 0031 owns deposits, prepayments, and no-show charges. This ADR adds:
+
+```text
+reservation_financials.read
+reservation_financials.requirement_manage
+reservation_financials.collect
+reservation_financials.apply
+reservation_financials.refund
+reservation_financials.charge_claim
+reservation_financials.charge_execute
+```
+
+A webhook is created only after a committed fact. PAN, CVV, a payment token, and full mandate or terms-acceptance proof stay out of the webhook.
+
+This amendment does not change installation tenancy, frozen idempotency responses, or webhook delivery semantics.

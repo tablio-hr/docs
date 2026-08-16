@@ -676,3 +676,11 @@ The original Decision that this ADR owns audit, retention, legal hold, and `Priv
 ADR 0030 owns gift cards, vouchers, and stored value. Erasure of a `CustomerProfile` does not delete the legal ledger or change the balance. The instrument secret is a credential.
 
 This amendment does not change append-only audit, multi-purpose `RetentionBinding`, or `PrivacySubjectFence` write checks.
+
+## Amendment — 2026-08-16: Profile erasure does not delete prepayment or charge proof
+
+The original Decision that this ADR owns audit, retention, legal hold, and `PrivacySubjectFence`, remain in the original text.
+
+ADR 0031 owns deposits, prepayments, and fee claims. Erasure of a `CustomerProfile` does not delete Payment, prepayment, charge-claim, or terms-acceptance proof, does not start a refund, and does not revive a spent prepayment. Payment credential and mandate are credentials.
+
+This amendment does not change append-only audit, multi-purpose `RetentionBinding`, or `PrivacySubjectFence` write checks.

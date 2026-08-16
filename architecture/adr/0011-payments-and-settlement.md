@@ -423,3 +423,11 @@ The original Decision that Invoice, Payment, allocation, and Settlement are sepa
 ADR 0030 owns the stored-value ledger. A captured `StoredValueAuthorization` becomes a `GIFT_CARD` Payment. A discount voucher is not a Payment method.
 
 This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.
+
+## Amendment — 2026-08-16: Reservation hold and no-show capture stay this ADR
+
+The original Decision that Invoice, Payment, allocation, and Settlement are separate facts remain in the original text.
+
+ADR 0031 owns the reservation financial requirement, prepayment ledger, charge claim, `MandateUseClaim`, and late-payment fulfillment. Hold and no-show capture use this ADR’s Intent and Payment. There is no `PREPAYMENT` or `NO_SHOW` method. A token is not a live mandate. A late capture without capacity refunds through this ADR.
+
+This amendment does not change Payment lifecycle, allocation, Intent, or Settlement.
