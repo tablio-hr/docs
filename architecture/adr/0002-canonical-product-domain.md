@@ -5,6 +5,7 @@
 Accepted (2026-08-15)
 
 Amended 2026-08-15: Divisible COUNT products.
+Editorially aligned 2026-08-16: Vodka examples updated to the amended model.
 
 ## Date
 
@@ -176,7 +177,8 @@ Purchase packaging converts into the base unit. Packaging never replaces it.
 ```text
 Coffee Beans    base_unit = g      1 × 3 kg container → +3000 g
 Coca-Cola 0.25 L base_unit = piece  2 crates × 24      → +48 pieces
-Vodka           base_unit = ml     1 bottle            → +700 ml
+Vodka 0.7 L     base_unit = piece  1 bottle            → +1 piece
+                divisible=true, declared content 700 ml
 ```
 
 ### 9. Hard lock: `base_unit_id` after first use
@@ -233,17 +235,17 @@ A product must not have a single `sale_unit` field that tries to describe every 
 One physical product may have several sale actions. POS may show one primary control and expose the others (for example by long press).
 
 ```text
-Vodka
-├── 0.03 L                         → -30 ml
-├── Whole bottle                   → -700 ml
-├── Bottle + 4 juices              → -700 ml vodka, -4 juice pieces
-├── Bottle + 4 Red Bulls           → -700 ml vodka, -4 Red Bull pieces
+Vodka 0.7 L  (base_unit=piece, divisible=true, declared content 700 ml)
+├── 0.03 L                         → PORTION 30/700 piece
+├── Whole bottle                   → DIRECT −1 piece
+├── Bottle + 4 juices              → DIRECT −1 piece vodka, −4 juice pieces
+├── Bottle + 4 Red Bulls           → DIRECT −1 piece vodka, −4 Red Bull pieces
 └── Bottle + 2 Red Bulls + 2 juices
 ```
 
 There is still one warehouse `Product` for vodka.
 
-Conceptual types: `DIRECT`, `MEASURED`, `RECIPE`, `BUNDLE`. Names and schema are confirmed in a later POS / Recipe ADR.
+Conceptual types: `DIRECT`, `PORTION`, `RECIPE`, `BUNDLE`. Names and schema are confirmed in a later POS / Recipe ADR.
 
 **POS must not contain stock-deduction business logic.** POS loads available products and allowed actions, then posts the chosen `sale_action_id`. The backend validates tenant, location, product, and action, then decides the stock effects.
 
@@ -352,7 +354,7 @@ Later ADR order may be adjusted, but none of those modules may introduce a paral
 
 **Coca-Cola.** Category `Beverages > Non-Alcoholic > Carbonated Drinks`. `base_unit = piece`. Manufacturer barcode on the product. Packaging: crate = 24 pieces. Direct sale: 1 piece. Receive 24, sell 1, remain 23.
 
-**Vodka.** Category `Beverages > Alcoholic > Spirits > Vodka`. `base_unit = ml`. Packaging: bottle = 700 ml. Tap 0.03 L deducts 30 ml. Whole bottle deducts 700 ml. Bundles deduct vodka plus other existing products. One warehouse Product.
+**Vodka.** Category `Beverages > Alcoholic > Spirits > Vodka`. `base_unit = piece`, `divisible = true`, declared content `700 ml`. Packaging: bottle = 1 piece. Tap 0.03 L is `PORTION 30/700 piece`. Ten pours on one line multiply the exact ratio first: `(10 × 30) / 700 = 3/7 piece`. Whole bottle is `DIRECT −1 piece`. Bundles deduct `−1 piece` vodka plus other existing products. One warehouse Product.
 
 **Coffee.** `Coffee Beans`, `base_unit = g`. Bag 1000 g, container 3000 g, box 6000 g. Receive one 3 kg container → +3000 g. Espresso → −8 g. Cappuccino → −8 g coffee and −120 ml milk. Warehouse does not know what a cappuccino is; it records the resulting movements.
 
@@ -504,6 +506,8 @@ When declared content is present:
 - a later historical sale line must freeze the ratio that was used
 
 `divisible` and declared content are Product-level hooks. Exact column names are an implementation concern. This amendment does not introduce a second vodka Product, lot tracking, or density conversion.
+
+Decisions 8, 12, and 20 vodka exemplars were editorially aligned on 2026-08-16 to this amendment. They no longer use `base_unit = ml`.
 
 ## Amendment — 2026-08-16: Product ACTIVE is not on a menu
 

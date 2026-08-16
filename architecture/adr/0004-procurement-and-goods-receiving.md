@@ -4,6 +4,9 @@
 
 Proposed
 
+Amended 2026-08-15: AP invoice lifecycle owned by ADR 0023.
+Editorially aligned 2026-08-16: Obsolete AP lifecycle, uniqueness, matching and correction examples replaced by ADR 0023 ownership pointers.
+
 ## Date
 
 2026-08-15
@@ -313,64 +316,34 @@ The same ADR 0003 posting locks apply: idempotency with payload, unique posting 
 ### 10. Supplier Invoice and match allocation
 
 ```text
-SupplierInvoice
----------------
-id
-tenant_id
-supplier_id
-invoice_number
-invoice_date
-currency
-status
-supplier snapshots
+Supplier Invoice is a separate financial document.
+It never moves stock and never creates or changes a Goods Receipt.
 
-SupplierInvoiceLine
--------------------
-product_id              # optional
-quantity / amount
-price basis
-tax classification snapshot
+ADR 0023 owns its fields, lifecycle, matching, approval,
+APOpenItem, corrections and supplier payment.
 ```
 
-Financial lifecycle (does not move stock):
-
-```text
-DRAFT → POSTED → VOIDED/REVERSED
-```
+A posted Supplier Invoice remains `POSTED` and is not `VOIDED`. Correction is a `CREDIT_NOTE`, `DEBIT_NOTE`, or other compensating AP document under ADR 0023. That correction does not move stock.
 
 **Non-product lines.** An invoice may contain freight, handling, service, deposit, rounding, and other non-stock charges. `product_id` is optional. Such a line never produces a movement, must not force a fake Product, and may stay unmatched or be amount-matched to a PO charge. Landed-cost spread onto goods is a later valuation ADR.
 
-**Match allocation** (semantics now; table later):
+**Match allocation.** ADR 0023 owns matching, legal-entity alignment of PO, Goods Receipt, and invoice, provisional reservation, and committed allocation. This ADR does not define allocation lifecycle.
 
-```text
-invoice_line
-→ matched_po_line
-→ matched_gr_line
-→ allocated_qty_base
-→ allocated_amount
-```
+A non-normative link example: an invoice line may later point at a Purchase Order line and a Goods Receipt line. The link does not change received quantity.
 
-- One Goods Receipt quantity must not be fully invoiced twice.
-- Sum of allocations on an invoice line must not exceed that line’s quantity. v1 has no silent exceed.
-- Allocations are tenant-scoped.
-- Quantity match and amount match stay separate.
+Stock-safety rules that remain here:
+
 - Changing a match must not change the Goods Receipt or any stock movement.
 - Auto-match with several equally good candidates stays `AMBIGUOUS`. Never `.first()`.
-- One invoice may cover many receipts. One receipt may be billed on many invoices (partial billing).
-- 3-way match when a PO exists (`PO × GR × Invoice`). 2-way when the receipt has no PO.
 - Invoice-before-receipt and receipt-before-invoice may both exist as documents. Only physical documents move stock.
 - Posted invoice and credit note never create `RECEIPT` or `RETURN_TO_SUPPLIER` movements.
 - Stock does not wait for the invoice.
 
 ### 11. Invoice number and snapshots
 
-Posted supplier invoice number is unique on `(tenant, supplier, invoice_number)` after normalization:
+Supplier-invoice number normalization, uniqueness and duplicate detection are owned by ADR 0023.
 
-- Trim whitespace.
-- Empty number is forbidden on a posted invoice.
-- Compare case-insensitively when the number contains letters.
-- Do not strip significant slashes, dashes, or leading zeros.
-- Reversal or credit note must not free that number for a new original invoice of the same supplier.
+A posted document number does not become available again because of a credit note, debit note, or compensating document.
 
 Posted documents snapshot supplier, product, packaging, unit, tax classification, price basis, and original amounts. Live rename of supplier or product must not rewrite history.
 
@@ -431,12 +404,12 @@ Posted documents snapshot supplier, product, packaging, unit, tax classification
 2. All stock effects go through the ADR 0003 writer. Same transaction, idempotency with payload, unique posting generation, linked reversal, no partial post.
 3. Return does not erase prior receipt and does not automatically reopen a Purchase Order. Reversal of a wrong Goods Receipt is the only way to undo a receipt fact, and only after every posted non-reversed return that references that receipt has itself been reversed. Replacement is a new Goods Receipt.
 4. v1: one `location_id + storage_id` on the Goods Receipt header. All lines enter that storage.
-5. Invoice matching uses quantity and amount allocations. A Goods Receipt quantity must not be fully invoiced twice. Ambiguous auto-match stays `AMBIGUOUS`. Changing a match never rewrites the receipt or movements.
+5. Invoice matching must not change a Goods Receipt or any stock movement. Ambiguous auto-match stays `AMBIGUOUS`. Allocation lifecycle and legal-entity alignment are owned by ADR 0023.
 6. Invoice lines may omit `product_id`. They never move stock and must not invent a Product. A stock Goods Receipt line must have a Product.
 7. Money is decimal, never float. Currency is ISO 4217 and immutable after post. Price basis is explicit. Excess decimals are rejected.
-8. Posted invoice number is unique on `(tenant, supplier, invoice_number)` after normalization and is not reusable after reverse or credit. SupplierProduct grain is `tenant + supplier + product + packaging`. Supplier code is unique per supplier when set. Ambiguous code match is rejected.
+8. Supplier-invoice number uniqueness and duplicate detection are owned by ADR 0023. A posted invoice number is not reusable after a credit note, debit note, or compensating document. SupplierProduct grain is `tenant + supplier + product + packaging`. Supplier code is unique per supplier when set. Ambiguous code match is rejected.
 9. Packaging converts to `base_unit` on the physical document. The ledger stores base quantity only.
-10. Posted Goods Receipt, return, and invoice are not edited. Errors are reverse plus a new document.
+10. Posted Goods Receipt and ReturnToSupplier are corrected through linked physical reversal and, when needed, a new physical document. A posted SupplierInvoice remains `POSTED` and immutable. Its correction is a separate `CREDIT_NOTE`, `DEBIT_NOTE`, or other compensating AP document under ADR 0023.
 11. Goods Receipt may exist without a Purchase Order. Over-receipt posts received quantity; it does not cap to ordered quantity.
 12. PO `RECEIVED` / line `FULFILLED` uses net received (gross − Goods Receipt reversals), not retained quantity after returns. Every line is fulfilled or explicitly closed short.
 13. v1 return line references a Goods Receipt line and posts from the chosen current storage, which may differ from the receipt storage.
@@ -479,6 +452,7 @@ The next domain ADR should define **Recipes and Production**, posting `PRODUCTIO
 - [ADR 0001: Platform deployment and tenancy boundary](0001-platform-deployment-and-tenancy-boundary.md)
 - [ADR 0002: Canonical Product domain](0002-canonical-product-domain.md)
 - [ADR 0003: Warehouse and Inventory](0003-warehouse-and-inventory.md)
+- [ADR 0023: Supplier Invoices and Accounts Payable](0023-supplier-invoices-and-accounts-payable.md)
 
 ## Out of scope
 
@@ -510,3 +484,5 @@ ADR 0023 owns the AP lifecycle, bank accounts, `InvoiceMatchAllocation` (`PROVIS
 A posted AP invoice is not `VOIDED`. Correction is a credit note, debit note, or compensating document. The invoice must not increase received quantity or create a Goods Receipt.
 
 This amendment does not change Goods Receipt posting, ReturnToSupplier, or ADR 0003 stock movements.
+
+Decision 10, Decision 11, and Invariants 5, 8, and 10 were editorially aligned on 2026-08-16. They no longer list `VOIDED/REVERSED`, the obsolete invoice field sketch, or `(tenant, supplier, invoice_number)` as a canonical uniqueness key.
